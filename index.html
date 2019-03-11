@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,7 +80,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -231,6 +231,23 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -249,6 +266,9 @@
       
     </ul>
   
+
+  
+    
 
   
 
@@ -271,9 +291,6 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-            
-
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -293,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/kg02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/Vue生命周期/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lethe">
@@ -313,7 +330,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/07/kg02/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识表示与知识建模</a>
+                <a href="/2019/03/01/Vue生命周期/" class="post-title-link" itemprop="http://yoursite.com/index.html">Vue生命周期</a>
               
             
           </h1>
@@ -338,12 +355,934 @@
                 
               
 
-              <time title="Created: 2019-01-07 10:06:54 / Modified: 12:40:11" itemprop="dateCreated datePublished" datetime="2019-01-07T10:06:54+08:00">2019-01-07</time>
+              <time title="Created: 2019-03-01 20:17:25 / Modified: 20:52:34" itemprop="dateCreated datePublished" datetime="2019-03-01T20:17:25+08:00">2019-03-01</time>
             
 
             
               
 
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/gzzSWn1DQXAB8dQKewns.png" alt="upload successful"> </p>
+<p><img src="/images/s46rZQyYywwx5vn8LWaz.png" alt="upload successful">    </p>
+<ul>
+<li>初始化组件时，仅执行了beforeCreate/Created/beforeMount/mounted四个钩子函数</li>
+<li>当改变data中定义的变量（响应式变量）时，会执行beforeUpdate/updated钩子函数</li>
+<li>当切换组件（当前组件未缓存）时，会执行beforeDestory/destroyed钩子函数</li>
+<li>初始化和销毁时的生命钩子函数均只会执行一次，beforeUpdate/updated可多次执行</li>
+</ul>
+<p>1、created阶段的ajax请求与mounted请求的区别：前者页面视图未出现，如果请求信息过多，页面会长时间处于白屏状态<br>2、mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染<br>完毕，可以用 vm.$nextTick   </p>
+<h4 id="父子组件生命周期："><a href="#父子组件生命周期：" class="headerlink" title="父子组件生命周期："></a>父子组件生命周期：</h4><p>1、仅当子组件完成挂载后，父组件才会挂载<br>2、当子组件完成挂载后，父组件会主动执行一次beforeUpdate/updated钩子函数（仅首次）<br>3、父子组件在data变化中是分别监控的，但是在更新props中的数据是关联的（可实践）<br>4、销毁父组件时，先将子组件销毁后才会销毁父组件</p>
+<h3 id="兄弟组件的生命周期："><a href="#兄弟组件的生命周期：" class="headerlink" title="兄弟组件的生命周期："></a>兄弟组件的生命周期：</h3><p>1、组件的初始化（mounted之前）分开进行，挂载是从上到下依次进行<br>2、当没有数据关联时，兄弟组件之间的更新和销毁是互不关联的</p>
+<h3 id="mixin"><a href="#mixin" class="headerlink" title="mixin"></a>mixin</h3><p>1、mixin中的生命周期与引入该组件的生命周期是仅仅关联的，且mixin的生命周期优先执行 ，顺序执行<br>2、自身 data 优先级高于混入的 data 属性</p>
+<blockquote>
+<p>参考 <a href="https://funteas.com/topic/5af41cf689f8723b0779ea0a" target="_blank" rel="noopener">https://funteas.com/topic/5af41cf689f8723b0779ea0a</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/01/Vue3-0-数据绑定Proxy/" class="post-title-link" itemprop="http://yoursite.com/index.html">Vue3.0使用Proxy数据绑定</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-01 18:52:39" itemprop="dateCreated datePublished" datetime="2019-03-01T18:52:39+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-06 17:41:59" itemprop="dateModified" datetime="2019-03-06T17:41:59+08:00">2019-03-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="vue双向绑定原理"><a href="#vue双向绑定原理" class="headerlink" title="vue双向绑定原理"></a>vue双向绑定原理</h2><p>vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过<code>Object.defineProperty</code> 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。<br>1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者<br>2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定对应的更新函数<br>3、需要现象watcher 作为 Observer和指令解析器的桥梁，能够订阅并收到每个属性变动</p>
+<p>具体实现代码（<a href="https://github.com/canfoo/self-vue/tree/master/v3）" target="_blank" rel="noopener">https://github.com/canfoo/self-vue/tree/master/v3）</a></p>
+<p><img src="/images/M13R3dqssOEDHa5MGgya.png" alt="upload successful"></p>
+<p><img src="/images/4BiPYa1MSwTUQBcgk0jY.png" alt="upload successful">  </p>
+<blockquote>
+<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+</blockquote>
+<p>使用<code>Object.defineProperty</code>存在一些缺点：<br>1、在vue中，无法监控到数组下标的变换，不能实时响应,<a href="https://segmentfault.com/a/1190000015783546" target="_blank" rel="noopener">因为性能问题</a>。<br>2.<code>Object.defineProperty</code>只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历.Vue里，是通过递归以及遍历data对象来实现对数据的监控的，如果属性值也是对象那么需要深度遍历,显然如果能劫持一个完整的对象，不管是对操作性还是性能都会有一个很大的提升。</p>
+<h2 id="Vue3-0-使用Proxy进行双向数据绑定"><a href="#Vue3-0-使用Proxy进行双向数据绑定" class="headerlink" title="Vue3.0 使用Proxy进行双向数据绑定"></a>Vue3.0 使用Proxy进行双向数据绑定</h2><blockquote>
+<p>Proxy 是es6的新特性，意为代理，可以在目标对象前架设一层拦截，外界对该对象的访问，都必须通过这层拦截，这提供了一种机制，可以对外界的访问进行过滤和改写。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/G06rMi8KPINNtOEi1me5.png" alt="upload successful"> </p>
+<blockquote>
+<p>Proxy提供了13中数据劫持的方法，handler对象 常用的方法： set,get,has,construct<br>上面使用到<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener"><code>Reflect</code></a>对象是es6新增的对象，它提供拦截 JavaScript 操作的方法。这些方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>（1） 将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</p>
+</blockquote>
+<blockquote>
+<p>（2） 修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。  </p>
+</blockquote>
+<blockquote>
+<p>（3） 让Object操作都变成函数行为。</p>
+</blockquote>
+<blockquote>
+<p>（4）Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。  </p>
+</blockquote>
+<blockquote>
+<p>参考  <a href="https://segmentfault.com/a/1190000017397797#articleHeader1" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017397797#articleHeader1</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/理解js作用域/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/28/理解js作用域/" class="post-title-link" itemprop="http://yoursite.com/index.html">var let const 作用域理解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-28 20:20:16" itemprop="dateCreated datePublished" datetime="2019-02-28T20:20:16+08:00">2019-02-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-05 20:50:46" itemprop="dateModified" datetime="2019-03-05T20:50:46+08:00">2019-03-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考 <a href="http://es6.ruanyifeng.com/#docs/let#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F" target="_blank" rel="noopener">es6 块级作用域</a><br><a href="https://juejin.im/post/5c76310c5188254046012189?utm_source=gold_browser_extension#heading-2" target="_blank" rel="noopener">重读《深入理解ES6》 —— 块级作用域</a></p>
+</blockquote>
+<h1 id="1-变量作用域"><a href="#1-变量作用域" class="headerlink" title="1. 变量作用域"></a>1. 变量作用域</h1><p>变量的作用域是指源程序定义该变量的区域，JavaScript目前有全局作用域，函数作用域和块级作用域。<br>类似C语言的编程语言中，花括号内的每一段代码都具有各自的作用域，这个称为块级作用域。es5只有全局作用域和函数作用域，到es6新增块级作用域</p>
+<h2 id="1-1-声明提前"><a href="#1-1-声明提前" class="headerlink" title="1.1 声明提前"></a>1.1 声明提前</h2><p>在JavaScript函数里面<code>var</code>声明所有的变量都会被提前至函数体顶部（不包括赋值操作），这意味着变量可以在未声明前使用  </p>
+<p><strong>函数声明会被提升至代码顶部，接下来才是变量声明提前</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">'global'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(scope) <span class="comment">//undefined</span></span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">'local'</span></span><br><span class="line">	<span class="built_in">console</span>.log(scope) <span class="comment">//local</span></span><br><span class="line">&#125;</span><br><span class="line">f()</span><br></pre></td></tr></table></figure>
+<p>上面的代码第一行会输出<code>undefined</code>，这是因为函数内部的变量优先级高于同名的全局变量，声明提前导致了局部变量遮盖了全局变量。上面的代码真实的执行顺序如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数声明会被提到代码顶部</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   	<span class="keyword">var</span> scope</span><br><span class="line">   	<span class="built_in">console</span>.log(scope) <span class="comment">//undefined</span></span><br><span class="line">       scope = <span class="string">'local'</span></span><br><span class="line">   	<span class="built_in">console</span>.log(scope) <span class="comment">//local</span></span><br><span class="line">   &#125;</span><br><span class="line">	<span class="keyword">var</span> scope  </span><br><span class="line">   scope = <span class="string">'global'</span></span><br><span class="line">   f()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/3q7AD8rHieKwXX8arEne.png" alt="upload successful"> </p>
+<p>（直接用的变量会被挂载到全局对象上，这种变量未执行前不可使用）</p>
+<h2 id="1-2块级作用域"><a href="#1-2块级作用域" class="headerlink" title="1.2块级作用域"></a>1.2块级作用域</h2><p>上面的例子可以看出没有了块级作用域的情况下内层变量可能会覆盖外层变量，还可能导致用来计数的循环变量泄露为全局变量。变量提升的机制也不大符合我们的编码习惯，因此在es6中引入了块级作用域的概念。  </p>
+<p><code>let</code> 和 <code>const</code> 声明的变量拥有块级作用域 ，用这种方法声明的变量会把变量的作用域限制在当前的代码块中,<strong>不存在变量提升，只能在声明后使用</strong>，<strong>不允许</strong>，<strong>let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、变量不会提升</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// ReferenceError: a is not defined</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、变量只能在当前作用域访问</span></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(b); <span class="comment">// 3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// ReferenceError: b is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3、禁止重复声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="number">4</span>; <span class="comment">// Identifier 'c' has already been declared</span></span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+<p><strong>暂时性死区</strong><br>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。</p>
+<p>ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
+<p>总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  tmp = <span class="string">'abc'</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="keyword">let</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+<h2 id="1-3-let与const区别"><a href="#1-3-let与const区别" class="headerlink" title="1.3 let与const区别"></a>1.3 let与const区别</h2><p>1.const声明一个只读的常量。一旦声明，常量的值就不能改变。<br>2.const 一旦声明必须立即初始化</p>
+<p>关于 const 声明的变量不可修改，有一个值得注意的地方就是用 const 声明一个对象。比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tom = &#123;</span><br><span class="line">    age: <span class="number">18</span>,</span><br><span class="line">    city: <span class="string">'shanghai'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">tom.age = <span class="number">19</span>; <span class="comment">// 这是可以的</span></span><br></pre></td></tr></table></figure>
+<p>const声明的对象是只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了。如果需要整个对象都不可修改，可以使用 <code>Object.freeze</code></p>
+<h2 id="1-4-循环中的块级作用域"><a href="#1-4-循环中的块级作用域" class="headerlink" title="1.4 循环中的块级作用域"></a>1.4 循环中的块级作用域</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">6</span>](); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>变量i是var命令声明的，在全局范围内都有效，所以全局只有一个变量i。每一次循环，变量i的值都会发生改变，而循环内被赋给数组a的函数内部的console.log(i)，里面的i指向的就是全局的i。也就是说，所有数组a的成员里面的i，指向的都是同一个i，导致运行时输出的是最后一轮的i的值，也就是 10。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">6</span>](); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。</p>
+<p>for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// abc</span></span><br><span class="line"><span class="comment">// abc</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/什么是尾递归/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/21/什么是尾递归/" class="post-title-link" itemprop="http://yoursite.com/index.html">什么是尾递归、尾调用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-21 16:42:31" itemprop="dateCreated datePublished" datetime="2019-02-21T16:42:31+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-22 18:26:44" itemprop="dateModified" datetime="2019-02-22T18:26:44+08:00">2019-02-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考地址 <a href="http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96" target="_blank" rel="noopener">es6 尾调用优化</a></p>
+</blockquote>
+<h3 id="尾调用"><a href="#尾调用" class="headerlink" title="尾调用"></a>尾调用</h3><p>尾调用(<code>Tail Call</code>)是函数编程的一个重要概念： 是指某个函数的最后一步调用另一个函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> g(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>f</code> 函数的最后一步调用<code>g</code>函数，这就称作尾调用。  </p>
+<p>以下3种情况不属于尾调用：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 情况一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> y = g(x);</span><br><span class="line">  <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 情况二</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 情况三</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  g(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，情况一是调用函数<code>g</code>之后，还有赋值操作，所以不属于尾调用，即使语义完全一样。情况二也属于调用后还有操作，即使写在一行内。情况三等同于下面的代码。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  g(x);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尾调用不一定出现在函数尾部，只要是最后一步操作即可。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> m(x)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，函数<code>m</code>和<code>n</code>都属于尾调用，因为它们都是函数<code>f</code>的最后一步操作。 </p>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>尾调用之所以与其他调用不同，就在于它的特殊的调用位置。<br>函数调用会在内存中形成一个’调用记录‘，也叫’调用帧‘，保存调用位置和内部变量等信息，如果在函数<code>A</code>的内部调用函数<code>B</code>，那么在A的调用帧上方，还会形成一个B的调用帧。等到<code>B</code>运行结束，将结果返回到<code>A</code>，<code>B</code>的调用帧才会消失。如果函数<code>B</code>内部还调用函数<code>C</code>，那就还有一个<code>C</code>的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。  </p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> g(m + n);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">g(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，如果函数<code>g</code>不是尾调用，函数<code>f</code>就需要保存内部变量<code>m</code>和<code>n</code>的值、<code>g</code>的调用位置等信息。但由于调用<code>g</code>之后，函数<code>f</code>就结束了，所以执行到最后一步，完全可以删除<code>f(x)</code>的调用帧，只保留<code>g(3)</code>的调用帧。  </p>
+<p>这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。  </p>
+<p>注意，<strong>只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”。</strong>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addOne</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> one = <span class="number">1</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b + one;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inner(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的函数不会进行尾调用优化，因为内层函数<code>inner</code>用到了外层函数<code>addOne</code>的内部变量<code>one</code>。</p>
+<h3 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h3><p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。<br>递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。<br>如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>“尾调用优化”对递归操作意义重大，所以一些函数式编程语言将其写入了语言规格。ES6 亦是如此，第一次明确规定，所有 ECMAScript 的实现，都必须部署“尾调用优化”。这就是说，ES6 中只要使用尾递归，就不会发生栈溢出，相对节省内存。  </p>
+<h3 id="递归函数的改写"><a href="#递归函数的改写" class="headerlink" title="递归函数的改写"></a>递归函数的改写</h3><p>尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量total，那就把这个中间变量改写成函数的参数。这样做的缺点就是不太直观，第一眼很难看出来，为什么计算5的阶乘，需要传入两个参数5和1？  </p>
+<p>两个方法可以解决这个问题。方法一是在尾递归函数之外，再提供一个正常形式的函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码通过一个正常形式的阶乘函数<code>factorial</code>，调用尾递归函数<code>tailFactorial</code>，看起来就正常多了。  </p>
+<p>函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">m</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(<span class="keyword">this</span>, m, n);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> factorial = currying(tailFactorial, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>上面代码通过柯里化，将尾递归函数<code>tailFactorial</code>变为只接受一个参数的<code>factorial</code>。  </p>
+<p>第二种方法就简单多了，就是<strong>采用 ES6 的函数默认值</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，参数total有默认值1，所以调用时不用提供这个值。</p>
+<p>总结一下，递归本质上是一种循环操作。纯粹的函数式编程语言没有循环操作命令，所有的循环都用递归实现，这就是为什么尾递归对这些语言极其重要。对于其他支持“尾调用优化”的语言（比如 Lua，ES6），只需要知道循环可以用递归代替，而一旦使用递归，就最好使用尾递归。</p>
+<p><strong>ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。</strong></p>
+<p>这是因为在正常模式下，函数内部有两个变量，可以跟踪函数的调用栈。</p>
+<p>func.arguments：返回调用时函数的参数。<br>func.caller：返回调用当前函数的那个函数。<br>尾调用优化发生时，函数的调用栈会改写，因此上面两个变量就会失真。严格模式禁用这两个变量，所以尾调用模式仅在严格模式下生效。  </p>
+<p>那么正常模式下，或者那些不支持该功能的环境中，有没有办法也使用尾递归优化呢？回答是可以的，就是自己实现尾递归优化。</p>
+<p>它的原理非常简单。尾递归之所以需要优化，原因是调用栈太多，造成溢出，那么只要减少调用栈，就不会溢出。怎么做可以减少调用栈呢？就是采用“循环”换掉“递归”。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/javascript对象/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/21/javascript对象/" class="post-title-link" itemprop="http://yoursite.com/index.html">javascript 对象</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-21 16:27:39" itemprop="dateCreated datePublished" datetime="2019-02-21T16:27:39+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-25 11:22:47" itemprop="dateModified" datetime="2019-02-25T11:22:47+08:00">2019-02-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>可以通过对象直接量，关键字 new 和 <code>Object.create()</code>(EMCAScript5 中)函数来创建对象。 </p>
+<h3 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let newObject = &#123;&#125;</span><br><span class="line">let point = &#123;x: 0, y: 1, &apos;for&apos;: 2&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">注：在 EMCAScript5 中保留字可以不带引号直接作为属性名，EMCAScript3 中需要带引号</span><br><span class="line"></span><br><span class="line">对象直接量是一个表达式，每次运算都会创建并初始化一个新对象</span><br><span class="line"></span><br><span class="line">### 关键字 new  </span><br><span class="line">关键字 new 后面跟一个函数调用。这里的函数称为**构造函数`constructor`**。JavaScript 语言核心中的原始类型都包含内置构造函数。 </span><br><span class="line"></span><br><span class="line">```JavaScript</span><br><span class="line">let newOb = new Object()</span><br><span class="line">let a = new Array() //[]</span><br><span class="line">let d = new Date() // Fri Jan 11 2019 11:26:36 GMT+0800 (中国标准时间)</span><br><span class="line">let r = new RegExp(&apos;js&apos;) //模式匹配的RegExp对象</span><br></pre></td></tr></table></figure>
+<p>除了内置的构造函数，还可以通过自定义的构造函数来初始化对象  </p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>在了解第三种创建方式之前，我们需要了解一下原型<br>每一个 JavaScript 对象(null 除外) 都和另一个对象相关联。“另一个”对象就是<strong>原型</strong>，每一个对象都是从原型继承属性。  </p>
+<p>所有通过<code>对象直接量</code>创建的对象都具有同一个原型对象<code>Object.prototype</code>。<br>通过关键字<code>new</code>和构造函数调用创建的对象的<strong>原型</strong>就是构造函数的<code>prototype</code>属性的值。 </p>
+<h4 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h4><p>这里解释一下<code>__proto__</code>属性(在 es6 中标准化，用于保证兼容)，它是<strong>对象</strong>的原型属性，用于继承属性，这个属性十分重要，经常吧“o 的原型属性”称为“o 的原型”，原型属性在实例对象创建之初就设置好了。<code>__proto__</code>属性指向的是该实例的原型（父元素）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">a = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br></pre></td></tr></table></figure>
+<p>采用上述两种方式创建对象<code>a</code> ,<code>a</code>的原型属性会指向<code>Object</code>的<strong>原型对象</strong>，即<code>Object.prototype</code>，比较特殊的是<code>Object</code>本身的原型属性指向<code>null</code><br><img src="/images/img-0.png" alt="filename already exists, renamed"> </p>
+<blockquote>
+<p>不建议修改对象原型属性，使用这个种方式改变和继承属性严重影响性能，如果想创建一个新的对象并且继承<code>[[prototype]]</code>的对象可以使用 <code>Object.create([[prototype]])</code><br><code>__proto__</code>属性 不被推荐使用，现在可以通过<code>Object.getPrototypeOf/Reflect.getPrototypeOf</code>和<code>Object.setPrototypeOf/Reflect.setPrototypeOf</code>（尽管如此，设置对象的<code>[[Prototype]]</code>是一个缓慢的操作，如果性能是一个问题，应该避免）。</p>
+</blockquote>
+<blockquote>
+<p><code>Object.getPrototypeOf(object)</code> 返回的是其原型对象  </p>
+</blockquote>
+<h4 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h4><p> <code>prototype</code>是每一函数都包含的属性，它指向一个对象，称这个对象为“原型对象” 将函数作为构造函数的时候，新创建的对象会从“原型对象”上继承属性。</p>
+<p> 现在来看一个自定义构造函数的例子，看它的原型链和 prototype 的指向</p>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>{
+}
+
+<span class="keyword">let</span> f = <span class="keyword">new</span> foo()
+
+</code></pre>
+<p>这里有个比较特殊的是<code>Object</code> 和<code>Function</code>是相互继承的<br><code>Function.__proto__ === Function.prototype //true</code><br><code>Object.__proto__ === Function.prototype  //true</code><br><code>Function.prototype.__proto__ === Object.prototype //true</code><br><code>Object.prototype._proto__ === null  //true</code>  </p>
+<p><img src="/images/IUyLAwjY24GBa466s7Eq.png" alt="upload successful">  </p>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a><code>constructor</code></h4><p>每个 JavaScript 函数都拥有一个<code>prototype</code>属性，<code>prototype</code>属性的值是一个对象，它函数一个不可枚举的属性<code>constructor</code> ，<code>constructor</code> 的值是一个函数对象，这个函数该对象的构造函数，所有函数最终都是由<code>Function()</code>构造函数得来，所以<code>constructor</code>属性的终点就是<code>Function()</code>。  </p>
+<p><img src="/images/r3HE4kNRo6vlSew6uxS5.png" alt="upload successful">  </p>
+<h3 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h3><p>EMCAScript5 定义了<code>Object.create()</code>方法，它创建一个新对象，其中这个对象的原型是该方法的第一个参数  </p>
+<pre><code class="javascript"><span class="comment">// 创建一个原型为null的空对象，这将会创造一个没有原型的新对象，对象不会继承任何东西，也不包含任何基础方法，如 toString</span>
+o = <span class="built_in">Object</span>.create(<span class="literal">null</span>);
+
+o = {};
+<span class="comment">// 以字面量方式创建的空对象就相当于:</span>
+o = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);
+
+</code></pre>
+<p> 总结一下： </p>
+<ol>
+<li><p>我们需要牢记两点：①<strong>proto</strong>和 constructor 属性是对象所独有的；② prototype 属性是函数所独有的，因为函数也是一种对象，所以函数也拥有<strong>proto</strong>和 constructor 属性。</p>
+</li>
+<li><p><strong>proto</strong>属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的<strong>proto</strong>属性所指向的那个对象（父对象）里找，一直找，直到<strong>proto</strong>属性的终点 null，然后返回 undefined，通过<strong>proto</strong>属性将对象连接起来的这条链路即我们所谓的原型链。</p>
+</li>
+<li><p>prototype 属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即 f1.<strong>proto</strong> === Foo.prototype。</p>
+</li>
+<li><p>constructor 属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向 Function()。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/kg_02/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/07/kg_02/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识表示与知识建模</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-07 10:06:54" itemprop="dateCreated datePublished" datetime="2019-01-07T10:06:54+08:00">2019-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-21 16:29:54" itemprop="dateModified" datetime="2019-02-21T16:29:54+08:00">2019-02-21</time>
               
             
           </span>
@@ -447,7 +1386,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/kg01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/kg_01/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lethe">
@@ -467,7 +1406,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/07/kg01/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识图谱第一课</a>
+                <a href="/2019/01/07/kg_01/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识图谱第一课</a>
               
             
           </h1>
@@ -509,7 +1448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-12 11:35:04" itemprop="dateModified" datetime="2019-01-12T11:35:04+08:00">2019-01-12</time>
+                <time title="Modified: 2019-02-21 16:29:47" itemprop="dateModified" datetime="2019-02-21T16:29:47+08:00">2019-02-21</time>
               
             
           </span>
@@ -633,7 +1572,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/start/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/kg_start/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lethe">
@@ -653,7 +1592,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/19/start/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识图谱知多少</a>
+                <a href="/2018/12/19/kg_start/" class="post-title-link" itemprop="http://yoursite.com/index.html">知识图谱知多少</a>
               
             
           </h1>
@@ -695,7 +1634,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-04 21:21:57" itemprop="dateModified" datetime="2019-01-04T21:21:57+08:00">2019-01-04</time>
+                <time title="Modified: 2019-02-21 16:29:40" itemprop="dateModified" datetime="2019-02-21T16:29:40+08:00">2019-02-21</time>
               
             
           </span>
@@ -1000,7 +1939,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1017,7 +1956,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -1076,7 +2017,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
@@ -1168,13 +2109,6 @@
 
   
   
-
-
-  <script src="/js/src/affix.js?v=6.6.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
-
-
 
   
 

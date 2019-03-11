@@ -104,24 +104,28 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/12/19/hello-world/index.html">
+<meta property="og:title" content="Vue3.0使用Proxy数据绑定">
+<meta property="og:url" content="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/index.html">
 <meta property="og:site_name" content="Lethe">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-19T02:41:06.110Z">
+<meta property="og:image" content="http://yoursite.com/images/M13R3dqssOEDHa5MGgya.png">
+<meta property="og:image" content="http://yoursite.com/images/4BiPYa1MSwTUQBcgk0jY.png">
+<meta property="og:image" content="http://yoursite.com/images/G06rMi8KPINNtOEi1me5.png">
+<meta property="og:updated_time" content="2019-03-06T09:41:59.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Vue3.0使用Proxy数据绑定">
+<meta name="twitter:description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
+<meta name="twitter:image" content="http://yoursite.com/images/M13R3dqssOEDHa5MGgya.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/19/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/">
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>Hello World | Lethe</title>
+  <title>Vue3.0使用Proxy数据绑定 | Lethe</title>
   
 
 
@@ -313,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lethe">
@@ -330,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">Vue3.0使用Proxy数据绑定
 
               
             
@@ -356,12 +360,24 @@
                 
               
 
-              <time title="Created: 2018-12-19 11:38:16 / Modified: 10:41:06" itemprop="dateCreated datePublished" datetime="2018-12-19T11:38:16+08:00">2018-12-19</time>
+              <time title="Created: 2019-03-01 18:52:39" itemprop="dateCreated datePublished" datetime="2019-03-01T18:52:39+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-06 17:41:59" itemprop="dateModified" datetime="2019-03-06T17:41:59+08:00">2019-03-06</time>
               
             
           </span>
@@ -394,15 +410,34 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="vue双向绑定原理"><a href="#vue双向绑定原理" class="headerlink" title="vue双向绑定原理"></a>vue双向绑定原理</h2><p>vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过<code>Object.defineProperty</code> 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。<br>1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者<br>2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定对应的更新函数<br>3、需要现象watcher 作为 Observer和指令解析器的桥梁，能够订阅并收到每个属性变动</p>
+<p>具体实现代码（<a href="https://github.com/canfoo/self-vue/tree/master/v3）" target="_blank" rel="noopener">https://github.com/canfoo/self-vue/tree/master/v3）</a></p>
+<p><img src="/images/M13R3dqssOEDHa5MGgya.png" alt="upload successful"></p>
+<p><img src="/images/4BiPYa1MSwTUQBcgk0jY.png" alt="upload successful">  </p>
+<blockquote>
+<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+</blockquote>
+<p>使用<code>Object.defineProperty</code>存在一些缺点：<br>1、在vue中，无法监控到数组下标的变换，不能实时响应,<a href="https://segmentfault.com/a/1190000015783546" target="_blank" rel="noopener">因为性能问题</a>。<br>2.<code>Object.defineProperty</code>只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历.Vue里，是通过递归以及遍历data对象来实现对数据的监控的，如果属性值也是对象那么需要深度遍历,显然如果能劫持一个完整的对象，不管是对操作性还是性能都会有一个很大的提升。</p>
+<h2 id="Vue3-0-使用Proxy进行双向数据绑定"><a href="#Vue3-0-使用Proxy进行双向数据绑定" class="headerlink" title="Vue3.0 使用Proxy进行双向数据绑定"></a>Vue3.0 使用Proxy进行双向数据绑定</h2><blockquote>
+<p>Proxy 是es6的新特性，意为代理，可以在目标对象前架设一层拦截，外界对该对象的访问，都必须通过这层拦截，这提供了一种机制，可以对外界的访问进行过滤和改写。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/G06rMi8KPINNtOEi1me5.png" alt="upload successful"> </p>
+<blockquote>
+<p>Proxy提供了13中数据劫持的方法，handler对象 常用的方法： set,get,has,construct<br>上面使用到<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener"><code>Reflect</code></a>对象是es6新增的对象，它提供拦截 JavaScript 操作的方法。这些方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>（1） 将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</p>
+</blockquote>
+<blockquote>
+<p>（2） 修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。  </p>
+</blockquote>
+<blockquote>
+<p>（3） 让Object操作都变成函数行为。</p>
+</blockquote>
+<blockquote>
+<p>（4）Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。  </p>
+</blockquote>
+<blockquote>
+<p>参考  <a href="https://segmentfault.com/a/1190000017397797#articleHeader1" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017397797#articleHeader1</a></p>
+</blockquote>
 
       
     </div>
@@ -433,14 +468,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/28/理解js作用域/" rel="next" title="var let const 作用域理解">
+                <i class="fa fa-chevron-left"></i> var let const 作用域理解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/19/kg_start/" rel="prev" title="知识图谱知多少">
-                知识图谱知多少 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/01/Vue生命周期/" rel="prev" title="Vue生命周期">
+                Vue生命周期 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -565,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue双向绑定原理"><span class="nav-number">1.</span> <span class="nav-text">vue双向绑定原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue3-0-使用Proxy进行双向数据绑定"><span class="nav-number">2.</span> <span class="nav-text">Vue3.0 使用Proxy进行双向数据绑定</span></a></li></ol></div>
             
 
           </div>
