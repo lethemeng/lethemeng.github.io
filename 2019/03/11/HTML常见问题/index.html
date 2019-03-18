@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="HTML与浏览器DOCTYPE 作用？标准模式与兼容模式各有什么区别?DOCTYPE用于声明文档类型和DTD规范&amp;lt;!DOCTYPE html&amp;gt;声明位于HTML文档中的第一行，不是一个HTML标签，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML常见问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/HTML常见问题/index.html">
+<meta property="og:site_name" content="Lethe">
+<meta property="og:description" content="HTML与浏览器DOCTYPE 作用？标准模式与兼容模式各有什么区别?DOCTYPE用于声明文档类型和DTD规范&amp;lt;!DOCTYPE html&amp;gt;声明位于HTML文档中的第一行，不是一个HTML标签，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/eYhvYiX1V3h8jGEDyc77.png">
+<meta property="og:updated_time" content="2019-03-11T11:02:59.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML常见问题">
+<meta name="twitter:description" content="HTML与浏览器DOCTYPE 作用？标准模式与兼容模式各有什么区别?DOCTYPE用于声明文档类型和DTD规范&amp;lt;!DOCTYPE html&amp;gt;声明位于HTML文档中的第一行，不是一个HTML标签，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标">
+<meta name="twitter:image" content="http://yoursite.com/images/eYhvYiX1V3h8jGEDyc77.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/HTML常见问题/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HTML常见问题 | Lethe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lethe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/HTML常见问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML常见问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-11 11:29:48 / Modified: 19:02:59" itemprop="dateCreated datePublished" datetime="2019-03-11T11:29:48+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="HTML与浏览器"><a href="#HTML与浏览器" class="headerlink" title="HTML与浏览器"></a>HTML与浏览器</h2><h3 id="DOCTYPE-作用？标准模式与兼容模式各有什么区别"><a href="#DOCTYPE-作用？标准模式与兼容模式各有什么区别" class="headerlink" title="DOCTYPE 作用？标准模式与兼容模式各有什么区别?"></a>DOCTYPE 作用？标准模式与兼容模式各有什么区别?</h3><p>DOCTYPE用于声明文档类型和DTD规范<br><code>&lt;!DOCTYPE html&gt;</code>声明位于HTML文档中的第一行，不是一个HTML标签，处于 html 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。</p>
+<p>标准模式的排版 和 JS 运作模式都是以该浏览器支持的<strong>最高标准</strong>运行。<br>在兼容模式中，页面以宽松的<strong>向后兼容</strong>的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
+<p>在HTML4.01中&lt;!doctype&gt;声明指向一个DTD，由于HTML4.01基于SGML，所以DTD指定了标记规则以保证浏览器正确渲染内容<br>HTML5不基于SGML，所以不用指定DTD</p>
+<h3 id="HTML-全局属性"><a href="#HTML-全局属性" class="headerlink" title="HTML 全局属性"></a>HTML 全局属性</h3><p>全局属性是所有HTML元素共有的属性; 它们可以用于所有元素，即使属性可能对某些元素不起作用。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">全局属性 | MDN</a></p>
+<h3 id="canvas和svg的区别"><a href="#canvas和svg的区别" class="headerlink" title="canvas和svg的区别"></a>canvas和svg的区别</h3><p>canvas是html5提供的新元素<code>&lt;canvas&gt;</code>，而svg存在的历史要比canvas久远，已经有十几年了。svg并不是html5专有的标签，最初svg是用xml技术（超文本扩展语言，可以自定义标签或属性）描述二维图形的语言。在H5中看似canvas与svg很像，但是，他们有巨大的差别。 </p>
+<p>首先，从它们的功能上来讲，canvas可以看做是一个画布。，其绘制出来的图形为<strong>标量图</strong>，因此，可以在canvas中引入jpg或png这类格式的图片，在实际开发中，大型的网络<strong>游戏</strong>都是用canvas画布做出来的，并且canvas的技术现在已经相当的成熟。另外，我们喜欢用canvas来做一些统计用的图表，如柱状图曲线图或饼状图等。<br>而svg，所绘制的图形为<strong>矢量图</strong>，所以其用法上受到了限制。因为只能绘制矢量图，所以svg中不能引入普通的图片，因为矢量图的不会失真的效果，在项目中我们会用来<strong>做小图标</strong>。但是由于其本质为矢量图，可以被无限放大而不会失真，这很适合被用来做地图，而百度地图就是用svg技术做出来的。</p>
+<p>另外从技术发面来讲canvas里面绘制的图形不能被引擎抓取，如我们要让canvas里面的一个图片跟随鼠标事件: canvas.onmouseover=function(){}。<br>而svg里面的图形可以被引擎抓取，支持事件的绑定。另外canvas中我们绘制图形通常是通过javascript来实现，svg更多的是通过标签来来实现，如在svg中绘制正矩形形就要用<rect>，这里我们不能用属性style=”width:XXX;height:XXX;”来定义。</rect></p>
+<h3 id="行内元素有哪些？块级元素有哪些？-空-void-元素有那些？"><a href="#行内元素有哪些？块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？"></a>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h3><p>定义：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为“block”，则为“块级”元素；span 默认 display 属性值为“inline”，是“行内”元素。</p>
+<ul>
+<li>行内元素有：a b span img input select strong em（强调的语气）</li>
+<li>块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p</li>
+<li>空元素：<ul>
+<li>常见: br hr img input link meta</li>
+<li>不常见: area base col command embed keygen param source track wbr</li>
+</ul>
+</li>
+</ul>
+<p>不同浏览器（版本）、HTML4（5）、CSS2 等实际略有差异<br>参考: <a href="http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements" target="_blank" rel="noopener">http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements</a></p>
+<h3 id="页面导入样式时，使用-link-和-import-有什么区别？"><a href="#页面导入样式时，使用-link-和-import-有什么区别？" class="headerlink" title="页面导入样式时，使用 link 和@import 有什么区别？"></a>页面导入样式时，使用 link 和@import 有什么区别？</h3><ul>
+<li>link 属于 XHTML 标签，除了加载 CSS 外，还能用于定义 RSS, 定义 rel 连接属性等作用；而@import 是 CSS 提供的，只能用于加载 CSS;</li>
+<li>页面被加载的时，link 会同时被加载，而@import 引用的 CSS 会等到页面被加载完再加载;</li>
+<li>import 是 CSS2.1 提出的，只在 IE5 以上才能被识别，而 link 是 XHTML 标签，无兼容问题;</li>
+<li>link 支持使用 js 控制 DOM 去改变样式，而@import 不支持;</li>
+</ul>
+<h3 id="HTML5变化"><a href="#HTML5变化" class="headerlink" title="HTML5变化"></a>HTML5变化</h3><ul>
+<li><a href="http://www.w3school.com.cn/html/html5_new_elements.asp" target="_blank" rel="noopener">新的语义化元素</a><ul>
+<li>header footer nav main article  section</li>
+<li>删除了一些纯样式的标签</li>
+</ul>
+</li>
+<li><a href="http://caibaojian.com/html5/form.html" target="_blank" rel="noopener">表单增强</a></li>
+<li>新API<ul>
+<li>离线 （applicationCache ）</li>
+<li>音视频 （audio, vidio）</li>
+<li>图形 （canvans）</li>
+<li>实时通信（websoket）</li>
+<li>本地存储（localStorage, indexDB）</li>
+<li>设备能力（地图定位，手机摇一摇）</li>
+</ul>
+</li>
+</ul>
+<h3 id="em-与-i-的区别"><a href="#em-与-i-的区别" class="headerlink" title="em 与 i 的区别"></a>em 与 i 的区别</h3><ul>
+<li>效果都是斜体</li>
+<li>em 是语义化标签，表强调</li>
+<li>i 是样式标签， 表斜体</li>
+</ul>
+<h3 id="哪些元素可以自闭合？"><a href="#哪些元素可以自闭合？" class="headerlink" title="哪些元素可以自闭合？"></a>哪些元素可以自闭合？</h3><ul>
+<li>表单元素 input</li>
+<li>img</li>
+<li>br,  hr</li>
+<li>meta, link</li>
+</ul>
+<h3 id="HTML和DOM的关系"><a href="#HTML和DOM的关系" class="headerlink" title="HTML和DOM的关系"></a>HTML和DOM的关系</h3><ul>
+<li>HTML只是一个字符串</li>
+<li>DOM由HTML解析而来</li>
+<li>JS可以维护DOM</li>
+</ul>
+<h3 id="简述一下你对-HTML-语义化的理解？"><a href="#简述一下你对-HTML-语义化的理解？" class="headerlink" title="简述一下你对 HTML 语义化的理解？"></a>简述一下你对 HTML 语义化的理解？</h3><ul>
+<li>用正确的标签做正确的事情。</li>
+<li>html 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;</li>
+<li>即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的;</li>
+<li>搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO;</li>
+<li>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</li>
+<li>可以提升可访问行和互操作性</li>
+<li>改进搜索引擎优化</li>
+<li>让代码更好维护，为了统一规范与新功能的出现</li>
+</ul>
+<h3 id="请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><a href="#请描述一下-cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="请描述一下 cookies，sessionStorage 和 localStorage 的区别？"></a>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h3><ul>
+<li>cookie 是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）</li>
+<li><p>cookie 数据始终在同源的 http 请求中携带（即使不需要），记会在浏览器和服务器间来回传递。</p>
+<blockquote>
+<p><code>cookie</code> 如果要跨访问可以通过<code>setPath()</code>和<code>setDomain()</code>  </p>
+<ol>
+<li>可在同一应用服务器内共享方法：设置cookie.setPath(“/“);   </li>
+<li>跨域共享cookie的方法：设置cookie.setDomain(“.xxx.com”);</li>
+</ol>
+</blockquote>
+</li>
+<li><p>sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存。</p>
+</li>
+<li>存储大小：<ul>
+<li>cookie 数据大小不能超过 4k。</li>
+<li>sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大。</li>
+</ul>
+</li>
+<li>有效期（生命周期）：<ul>
+<li>localStorage: 存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；</li>
+<li>sessionStorage: 数据在当前浏览器窗口关闭后自动删除。</li>
+<li>cookie: 设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭</li>
+</ul>
+</li>
+<li>共享<ul>
+<li>sessionStorage不能共享，localStorage在同源文档之间共享，cookie在同源且符合path规则的文档之间共享</li>
+</ul>
+</li>
+</ul>
+<h3 id="html-中-title-属性和-alt-属性的区别？"><a href="#html-中-title-属性和-alt-属性的区别？" class="headerlink" title="html 中 title 属性和 alt 属性的区别？"></a>html 中 title 属性和 alt 属性的区别？</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"#"</span> <span class="attr">alt</span>=<span class="string">"alt信息"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当图片不输出信息的时候，会显示 alt 信息 鼠标放上去没有信息，当图片正常读取，不会出现 alt 信息。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"#"</span> <span class="attr">alt</span>=<span class="string">"alt信息"</span> <span class="attr">title</span>=<span class="string">"title信息"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>当图片不输出信息的时候，会显示 alt 信息 鼠标放上去会出现 title 信息；</li>
+<li>当图片正常输出的时候，不会出现 alt 信息，鼠标放上去会出现 title 信息。</li>
+<li>除了纯装饰图片外都必须设置有意义的值，搜索引擎会分析。</li>
+</ul>
+<h4 id="另外还有一些关于-title-属性的知识："><a href="#另外还有一些关于-title-属性的知识：" class="headerlink" title="另外还有一些关于 title 属性的知识："></a>另外还有一些关于 title 属性的知识：</h4><ul>
+<li>title 属性可以用在除了 base，basefont，head，html，meta，param，script 和 title 之外的所有标签。</li>
+<li>title 属性的功能是提示。额外的说明信息和非本质的信息请使用 title 属性。title 属性值可以比 alt 属性值设置的更长。</li>
+<li>title 属性有一个很好的用途，即为链接添加描述性文字，特别是当连接本身并不是十分清楚的表达了链接的目的。</li>
+</ul>
+<h3 id="为什么我们要弃用table标签？"><a href="#为什么我们要弃用table标签？" class="headerlink" title="为什么我们要弃用table标签？"></a>为什么我们要弃用table标签？</h3><p>table的缺点在于服务器把代码加载到本地服务器的过程中，本来是加载一行执行一行，但是table标签是里面的东西<strong>全都下载完之后才会显示出来</strong>，那么如果图片很多的话就会导致网页一直加载不出来，除非所有的图片和内容都加载完。如果要等到所有的图片全都加载完之后才显示出来的话那也太慢了，所以table标签现在我们基本放弃使用了。</p>
+<p>使用table布局，一个很小的改动可能造成整个table重新布局，引起回流</p>
+<h3 id="head-元素"><a href="#head-元素" class="headerlink" title="head 元素"></a>head 元素</h3><p>head子元素大概分为三类，分别是：</p>
+<ul>
+<li>描述网页基本信息的</li>
+<li>指向渲染网页需要其他文件链接的</li>
+<li>各大厂商根据自己需要定制的</li>
+</ul>
+<h4 id="网页基本信息"><a href="#网页基本信息" class="headerlink" title="网页基本信息"></a>网页基本信息</h4><p>一个网页，首先得有个标题，就跟人有名字一样。除此之外，还可以根据实际需要补充一些基本信息。</p>
+<ul>
+<li>文档标题（浏览器标签中显示的文本）：<code>&lt;title&gt;深入了解 head 元素&lt;/title&gt;</code></li>
+<li>编码格式：<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>如果你的页面出现乱码，那一般就是编码格式不对</li>
+<li>视窗设置：<code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code></li>
+<li>搜索引擎优化相关内容： <code>&lt;meta name=&quot;description&quot; content=“帮助你深层次了解HTML文档结构”&gt;</code></li>
+<li>IE浏览器版本渲染设置：<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</code></li>
+</ul>
+<h4 id="厂商定制"><a href="#厂商定制" class="headerlink" title="厂商定制"></a>厂商定制</h4><p>同样分享页面到QQ的聊天窗口，有些页面直接就是一个链接，但是有些页面有标题，图片，还有文字介绍。为什么区别这么明显呢？其实就是看有没有设置下面这三个内容<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">itemprop</span>=<span class="string">"name"</span> <span class="attr">content</span>=<span class="string">"这是分享的标题"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">itemprop</span>=<span class="string">"image"</span> <span class="attr">content</span>=<span class="string">"http://imgcache.qq.com/qqshow/ac/v4/global/logo.png"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">itemprop</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"这是要分享的内容"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="移动端项目需要注意的4个问题"><a href="#移动端项目需要注意的4个问题" class="headerlink" title="移动端项目需要注意的4个问题"></a>移动端项目需要注意的4个问题</h3><h4 id="meta中设置viewport"><a href="#meta中设置viewport" class="headerlink" title="meta中设置viewport"></a>meta中设置viewport</h4><p>视窗宽度<br>一个移动专属的Meta值，用于定义视口的各种行为，viewport 用于定义视口的各种行为。</p>
+<p><img src="/images/eYhvYiX1V3h8jGEDyc77.png" alt="upload successful">  </p>
+<p>阻止用户手滑放大或缩小页面，需要在 index.html中添加meta元素,设置viewport。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="移动端适配px2rem"><a href="#移动端适配px2rem" class="headerlink" title="移动端适配px2rem"></a>移动端适配px2rem</h4><p>根据根元素的字体大小计算尺寸单位，通过不同分辨率的屏幕改变html的font-size来实现rem的响应式布局。<br><strong>deviceWidth=设备逻辑像素/(dpr * scale)；</strong></p>
+<h4 id="CSS样式统一问题"><a href="#CSS样式统一问题" class="headerlink" title="CSS样式统一问题"></a>CSS样式统一问题</h4><p>我们需要重置页面样式，因为在不同的手机浏览器上，默认的css样式不是统一的。 解决方法：使用reset.css重置所有元素的默认样式</p>
+<h4 id="一像素边框问题"><a href="#一像素边框问题" class="headerlink" title="一像素边框问题"></a>一像素边框问题</h4><p>有的手机分辨率比较高，是2倍屏或3倍屏，手机上的浏览器就会把CSS中的1像素值展示为2个或3个物理宽度 解决方法： 添加一个border.css库，将利用<strong>scroll缩放的原理</strong>将边框重置。当我们需要使用一像素边框时只需要在标签上添加对应类名，如设置底部一像素边框就在标签上加入”border-bottom”的class名</p>
+<h4 id="300毫秒点击延迟问题"><a href="#300毫秒点击延迟问题" class="headerlink" title="300毫秒点击延迟问题"></a>300毫秒点击延迟问题</h4><p>在移动端开发中，某些机型上使用click事件会延迟300ms才执行，这样影响了用户体验。 解决方法： 引入<a href="https://www.jianshu.com/p/05b142d84780" target="_blank" rel="noopener">fastclick.js</a>。</p>
+<h4 id="点透问题"><a href="#点透问题" class="headerlink" title="点透问题"></a>点透问题</h4><p>由于移动端的300ms延迟的问题，如果有个元素触发了touch事件，并且隐藏了，由于延迟的问题，click事件就变成该元素下方的某个按钮或者链接，就会产生链接跳转或者触发另一操作，就是点透问题。<br>点透问题一般的解决方法有：消耗掉touch后面的click事件，可以个接住，或者那个东西挡住，或者延迟隐藏，或者不要混用touch和click</p>
+<h3 id="HTML5-的-form-如何关闭自动补全功能？"><a href="#HTML5-的-form-如何关闭自动补全功能？" class="headerlink" title="HTML5 的 form 如何关闭自动补全功能？"></a>HTML5 的 form 如何关闭自动补全功能？</h3><p>给不想要提示的 form 或某个 input 设置为 autocomplete=off。</p>
+<h3 id="如何实现浏览器内多个标签页之间的通信-阿里"><a href="#如何实现浏览器内多个标签页之间的通信-阿里" class="headerlink" title="如何实现浏览器内多个标签页之间的通信? (阿里)"></a>如何实现浏览器内多个标签页之间的通信? (阿里)</h3><blockquote>
+<p>参考 <a href="https://www.zhuwenlong.com/blog/article/590ea64fe55f0f385f9a12e5" target="_blank" rel="noopener">https://www.zhuwenlong.com/blog/article/590ea64fe55f0f385f9a12e5</a></p>
+<ul>
+<li>webSocket<br>全双工(full-duplex)通信自然可以实现多个标签页之间的通信。<br>WebSocket并不是全新的协议，而是利用了HTTP协议来建立连接。为什么WebSocket连接可以实现全双工通信而HTTP连接不行呢？实际上HTTP协议是建立在TCP协议之上的，TCP协议本身就实现了全双工通信，但是HTTP协议的请求－应答机制限制了全双工通信。<br>WebSocket连接必须由浏览器发起，<br>特点：<br>（1）建立在 TCP 协议之上，服务器端的实现比较容易。<br>（2）与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。<br>（3）数据格式比较轻量，性能开销小，通信高效。<br>（4）可以发送文本，也可以发送二进制数据。<br>（5）没有同源限制，客户端可以与任意服务器通信。<br>（6）协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>ShareWorker<br>html5浏览器的新特性SharedWorker  （同源限制）<br>ShareWorker : 通过shareWorker我们可以创建共享线程，即不同的页面使用同一个ShareWorkder，不同的页面中进行数据的共享和传递</p>
+</li>
+<li><p>调用localStorage<br>localstorage是浏览器多个标签共用的存储空间，所以可以用来实现多标签之间的通信(ps：session是会话级的存储空间，每个标签页都是单独的）。  </p>
+<p>监听onstorage以及storage事件</p>
+</li>
+<li>cookie<br>同源的情况下，可以判断值是否变化来传递信息</li>
+</ul>
+<h3 id="webSocket-如何兼容低浏览器？-阿里"><a href="#webSocket-如何兼容低浏览器？-阿里" class="headerlink" title="webSocket 如何兼容低浏览器？(阿里)"></a>webSocket 如何兼容低浏览器？(阿里)</h3><ul>
+<li>Adobe Flash Socket 、</li>
+<li>ActiveX HTMLFile (IE) 、</li>
+<li>基于 multipart 编码发送 XHR 、</li>
+<li>基于长轮询的 XHR</li>
+</ul>
+<h3 id="title-与-h1-的区别、b-与-strong-的区别、i-与-em-的区别？"><a href="#title-与-h1-的区别、b-与-strong-的区别、i-与-em-的区别？" class="headerlink" title="title 与 h1 的区别、b 与 strong 的区别、i 与 em 的区别？"></a>title 与 h1 的区别、b 与 strong 的区别、i 与 em 的区别？</h3><ul>
+<li>title 属性没有明确意义只表示是个标题，H1 则表示层次明确的标题，对页面信息的抓取也有很大的影响；</li>
+<li>strong 是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：strong 会重读，而 b 是展示强调内容。</li>
+<li>i 内容展示为斜体，em 表示强调的文本；</li>
+</ul>
+<p>Physical Style Elements – 自然样式标签</p>
+<p>b, i, u, s, pre</p>
+<p>Semantic Style Elements – 语义样式标签</p>
+<p>strong, em, ins, del, code</p>
+<p>应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。</p>
+<h3 id="html5-有哪些新特性、移除了那些元素？如何处理-HTML5-新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><a href="#html5-有哪些新特性、移除了那些元素？如何处理-HTML5-新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？" class="headerlink" title="html5 有哪些新特性、移除了那些元素？如何处理 HTML5 新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？"></a>html5 有哪些新特性、移除了那些元素？如何处理 HTML5 新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h3><ul>
+<li><p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等。<br>功能的增加：</p>
+<ul>
+<li>绘画 canvas</li>
+<li>用于媒介播放的 video 和 audio 元素</li>
+<li>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失</li>
+<li>sessionStorage 的数据在浏览器关闭后自动删除</li>
+<li>语意化更好的内容元素，比如 article、footer、header、nav、section</li>
+<li>表单控件，calendar、date、time、email、url、search</li>
+<li>新的技术 webworker, websocket, Geolocation</li>
+</ul>
+</li>
+<li>移除的元素：<ul>
+<li>纯表现的元素：basefont，big，center，font, s，strike，tt，u;</li>
+<li>对可用性产生负面影响的元素：frame，frameset，noframes；</li>
+</ul>
+</li>
+<li><p>支持 HTML5 新标签：</p>
+<ul>
+<li>IE8/IE7/IE6 支持通过 document.createElement 方法产生的标签，</li>
+<li>可以利用这一特性让这些浏览器支持 HTML5 新标签，</li>
+<li>浏览器支持新标签后，还需要添加标签默认的样式。</li>
+<li><p>当然也可以直接使用成熟的框架、比如 html5shim;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></span><br><span class="line"><span class="comment">  &lt;script&gt;</span></span><br><span class="line"><span class="comment">    src = 'http://html5shim.googlecode.com/svn/trunk/html5.js'</span></span><br><span class="line"><span class="comment">  &lt;/script&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>如何区分 HTML5： DOCTYPE 声明\新增的结构元素\功能元素</p>
+</li>
+</ul>
+<h3 id="HTML5-的离线储存怎么使用，工作原理能不能解释一下？"><a href="#HTML5-的离线储存怎么使用，工作原理能不能解释一下？" class="headerlink" title="HTML5 的离线储存怎么使用，工作原理能不能解释一下？"></a>HTML5 的离线储存怎么使用，工作原理能不能解释一下？</h3><p>离线的应用，相比普通web应用会多一个描述文件，用于描述哪些文件需要被缓存，或者不被缓存。该描述文件的扩展名<code>.appcache</code>,通过解析这个文件，浏览器就会知道缓存哪些文件</p>
+<p>如何使用：</p>
+<ol>
+<li>页面头部像下面一样加入一个 manifest 的属性；</li>
+<li>在 cache.manifest 文件的编写离线存储的资源</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">#v1.0</span><br><span class="line"></span><br><span class="line">CACHE:</span><br><span class="line">js/app.js</span><br><span class="line">css/style.css</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line">assets/logo.png</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">/html5/ /404.html</span><br></pre></td></tr></table></figure>
+<h3 id="离线缓存后如何对文件进行更新？service-worker"><a href="#离线缓存后如何对文件进行更新？service-worker" class="headerlink" title="离线缓存后如何对文件进行更新？service worker"></a>离线缓存后如何对文件进行更新？service worker</h3><p><code>service worker</code>是HTML5的新API<br>service worker 主要提供了四类的功能：</p>
+<ol>
+<li>后台消息传递  </li>
+<li>网络代理  </li>
+<li>离线缓存</li>
+<li>消息推送</li>
+</ol>
+<p><code>service worker</code>是浏览器后台的独立进程，不直接参与DOM操作，但是可以用于postMessage 与页面通信。开发者可以灵活的操作缓存那些文件，替换哪些文件。</p>
+<h3 id="浏览器是怎么对-HTML5-的离线储存资源进行管理和加载的呢？"><a href="#浏览器是怎么对-HTML5-的离线储存资源进行管理和加载的呢？" class="headerlink" title="浏览器是怎么对 HTML5 的离线储存资源进行管理和加载的呢？"></a>浏览器是怎么对 HTML5 的离线储存资源进行管理和加载的呢？</h3><ul>
+<li>在线的情况下，浏览器发现 html 头部有 manifest 属性，它会请求 manifest 文件，如果是第一次访问 app，那么浏览器就会根据 manifest 文件的内容下载相应的资源并且进行离线存储。如果已经访问过 app 并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的 manifest 文件与旧的 manifest 文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。</li>
+<li>离线的情况下，浏览器就直接使用离线存储的资源。</li>
+</ul>
+<p>在离线状态时，操作 window.applicationCache 进行需求实现。</p>
+<p>参考链接：<a href="https://yanhaijing.com/html/2014/12/28/html5-manifest/" target="_blank" rel="noopener">HTML5 离线缓存-manifest 简介</a></p>
+<h3 id="iframe-有那些缺点？"><a href="#iframe-有那些缺点？" class="headerlink" title="iframe 有那些缺点？"></a>iframe 有那些缺点？</h3><ul>
+<li>iframe 会阻塞主页面的 Onload 事件；</li>
+<li>搜索引擎的检索程序无法解读这种页面，不利于 SEO;</li>
+<li>iframe 和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。</li>
+</ul>
+<p>使用 iframe 之前需要考虑这两个缺点。如果需要使用 iframe，最好是通过 javascript</p>
+<p>动态给 iframe 添加 src 属性值，这样可以绕开以上两个问题。</p>
+<h3 id="Label-的作用是什么？是怎么用的？"><a href="#Label-的作用是什么？是怎么用的？" class="headerlink" title="Label 的作用是什么？是怎么用的？"></a>Label 的作用是什么？是怎么用的？</h3><p>label 标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"Name"</span>&gt;</span>Number:<span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">“text“name</span>=<span class="string">"Name"</span> <span class="attr">id</span>=<span class="string">"Name"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Date:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"B"</span>/&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="页面可见性（Page-Visibility-API）-可以有哪些用途？"><a href="#页面可见性（Page-Visibility-API）-可以有哪些用途？" class="headerlink" title="页面可见性（Page Visibility API） 可以有哪些用途？"></a>页面可见性（Page Visibility API） 可以有哪些用途？</h3><ul>
+<li>通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;</li>
+<li>在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；</li>
+</ul>
+<h3 id="如何在页面上实现一个圆形的可点击区域？"><a href="#如何在页面上实现一个圆形的可点击区域？" class="headerlink" title="如何在页面上实现一个圆形的可点击区域？"></a>如何在页面上实现一个圆形的可点击区域？</h3><ul>
+<li>map+area 或者 svg</li>
+<li>border-radius</li>
+<li>纯 js 实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等</li>
+</ul>
+<h3 id="实现不使用-border-画出-1px-高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。"><a href="#实现不使用-border-画出-1px-高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。" class="headerlink" title="实现不使用 border 画出 1px 高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。"></a>实现不使用 border 画出 1px 高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height:1px;overflow:hidden;background:red"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/前端模块化组件化/" rel="next" title="前端模块化组件化">
+                <i class="fa fa-chevron-left"></i> 前端模块化组件化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/浏览器相关问题/" rel="prev" title="浏览器相关问题">
+                浏览器相关问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lethe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML与浏览器"><span class="nav-number">1.</span> <span class="nav-text">HTML与浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOCTYPE-作用？标准模式与兼容模式各有什么区别"><span class="nav-number">1.1.</span> <span class="nav-text">DOCTYPE 作用？标准模式与兼容模式各有什么区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-全局属性"><span class="nav-number">1.2.</span> <span class="nav-text">HTML 全局属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas和svg的区别"><span class="nav-number">1.3.</span> <span class="nav-text">canvas和svg的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行内元素有哪些？块级元素有哪些？-空-void-元素有那些？"><span class="nav-number">1.4.</span> <span class="nav-text">行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面导入样式时，使用-link-和-import-有什么区别？"><span class="nav-number">1.5.</span> <span class="nav-text">页面导入样式时，使用 link 和@import 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5变化"><span class="nav-number">1.6.</span> <span class="nav-text">HTML5变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em-与-i-的区别"><span class="nav-number">1.7.</span> <span class="nav-text">em 与 i 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哪些元素可以自闭合？"><span class="nav-number">1.8.</span> <span class="nav-text">哪些元素可以自闭合？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML和DOM的关系"><span class="nav-number">1.9.</span> <span class="nav-text">HTML和DOM的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简述一下你对-HTML-语义化的理解？"><span class="nav-number">1.10.</span> <span class="nav-text">简述一下你对 HTML 语义化的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><span class="nav-number">1.11.</span> <span class="nav-text">请描述一下 cookies，sessionStorage 和 localStorage 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html-中-title-属性和-alt-属性的区别？"><span class="nav-number">1.12.</span> <span class="nav-text">html 中 title 属性和 alt 属性的区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#另外还有一些关于-title-属性的知识："><span class="nav-number">1.12.1.</span> <span class="nav-text">另外还有一些关于 title 属性的知识：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么我们要弃用table标签？"><span class="nav-number">1.13.</span> <span class="nav-text">为什么我们要弃用table标签？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head-元素"><span class="nav-number">1.14.</span> <span class="nav-text">head 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页基本信息"><span class="nav-number">1.14.1.</span> <span class="nav-text">网页基本信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#厂商定制"><span class="nav-number">1.14.2.</span> <span class="nav-text">厂商定制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端项目需要注意的4个问题"><span class="nav-number">1.15.</span> <span class="nav-text">移动端项目需要注意的4个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#meta中设置viewport"><span class="nav-number">1.15.1.</span> <span class="nav-text">meta中设置viewport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动端适配px2rem"><span class="nav-number">1.15.2.</span> <span class="nav-text">移动端适配px2rem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS样式统一问题"><span class="nav-number">1.15.3.</span> <span class="nav-text">CSS样式统一问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一像素边框问题"><span class="nav-number">1.15.4.</span> <span class="nav-text">一像素边框问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#300毫秒点击延迟问题"><span class="nav-number">1.15.5.</span> <span class="nav-text">300毫秒点击延迟问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点透问题"><span class="nav-number">1.15.6.</span> <span class="nav-text">点透问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-的-form-如何关闭自动补全功能？"><span class="nav-number">1.16.</span> <span class="nav-text">HTML5 的 form 如何关闭自动补全功能？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现浏览器内多个标签页之间的通信-阿里"><span class="nav-number">1.17.</span> <span class="nav-text">如何实现浏览器内多个标签页之间的通信? (阿里)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webSocket-如何兼容低浏览器？-阿里"><span class="nav-number">1.18.</span> <span class="nav-text">webSocket 如何兼容低浏览器？(阿里)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#title-与-h1-的区别、b-与-strong-的区别、i-与-em-的区别？"><span class="nav-number">1.19.</span> <span class="nav-text">title 与 h1 的区别、b 与 strong 的区别、i 与 em 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html5-有哪些新特性、移除了那些元素？如何处理-HTML5-新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><span class="nav-number">1.20.</span> <span class="nav-text">html5 有哪些新特性、移除了那些元素？如何处理 HTML5 新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-的离线储存怎么使用，工作原理能不能解释一下？"><span class="nav-number">1.21.</span> <span class="nav-text">HTML5 的离线储存怎么使用，工作原理能不能解释一下？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线缓存后如何对文件进行更新？service-worker"><span class="nav-number">1.22.</span> <span class="nav-text">离线缓存后如何对文件进行更新？service worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器是怎么对-HTML5-的离线储存资源进行管理和加载的呢？"><span class="nav-number">1.23.</span> <span class="nav-text">浏览器是怎么对 HTML5 的离线储存资源进行管理和加载的呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iframe-有那些缺点？"><span class="nav-number">1.24.</span> <span class="nav-text">iframe 有那些缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Label-的作用是什么？是怎么用的？"><span class="nav-number">1.25.</span> <span class="nav-text">Label 的作用是什么？是怎么用的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面可见性（Page-Visibility-API）-可以有哪些用途？"><span class="nav-number">1.26.</span> <span class="nav-text">页面可见性（Page Visibility API） 可以有哪些用途？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何在页面上实现一个圆形的可点击区域？"><span class="nav-number">1.27.</span> <span class="nav-text">如何在页面上实现一个圆形的可点击区域？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现不使用-border-画出-1px-高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。"><span class="nav-number">1.28.</span> <span class="nav-text">实现不使用 border 画出 1px 高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lethe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="介绍一下你对浏览器内核的理解？ 参考： https://segmentfault.com/a/1190000012925872#articleHeader13    浏览器内核即渲染进程是多线程，包括：GUI渲染线程，js引擎线程，事件触发线程，定时触发器线程，异步http请求线程    渲染线程：  负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器相关问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/浏览器相关问题/index.html">
+<meta property="og:site_name" content="Lethe">
+<meta property="og:description" content="介绍一下你对浏览器内核的理解？ 参考： https://segmentfault.com/a/1190000012925872#articleHeader13    浏览器内核即渲染进程是多线程，包括：GUI渲染线程，js引擎线程，事件触发线程，定时触发器线程，异步http请求线程    渲染线程：  负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/tnWds8ZpBUQYofiJeTRU.png">
+<meta property="og:image" content="http://yoursite.com/images/hCetcJu9oSaemXgYG328.png">
+<meta property="og:updated_time" content="2019-03-12T05:07:55.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器相关问题">
+<meta name="twitter:description" content="介绍一下你对浏览器内核的理解？ 参考： https://segmentfault.com/a/1190000012925872#articleHeader13    浏览器内核即渲染进程是多线程，包括：GUI渲染线程，js引擎线程，事件触发线程，定时触发器线程，异步http请求线程    渲染线程：  负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等">
+<meta name="twitter:image" content="http://yoursite.com/images/tnWds8ZpBUQYofiJeTRU.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/浏览器相关问题/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>浏览器相关问题 | Lethe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lethe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/浏览器相关问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器相关问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-11 19:03:09" itemprop="dateCreated datePublished" datetime="2019-03-11T19:03:09+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-12 13:07:55" itemprop="dateModified" datetime="2019-03-12T13:07:55+08:00">2019-03-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="介绍一下你对浏览器内核的理解？"><a href="#介绍一下你对浏览器内核的理解？" class="headerlink" title="介绍一下你对浏览器内核的理解？"></a>介绍一下你对浏览器内核的理解？</h3><blockquote>
+<p>参考： <a href="https://segmentfault.com/a/1190000012925872#articleHeader13" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012925872#articleHeader13</a>  </p>
+</blockquote>
+<p>浏览器内核即渲染进程是多线程，包括：GUI渲染线程，js引擎线程，事件触发线程，定时触发器线程，异步http请求线程</p>
+<p><img src="/images/tnWds8ZpBUQYofiJeTRU.png" alt="upload successful">  </p>
+<p>渲染线程：</p>
+<ul>
+<li>负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等</li>
+<li>当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行</li>
+<li>GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。</li>
+</ul>
+<p>JS 引擎线程：</p>
+<ul>
+<li>JS引擎线程负责解析Javascript脚本，运行代码。</li>
+<li>JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序</li>
+<li>GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</li>
+</ul>
+<p>事件触发线程：</p>
+<ul>
+<li>归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）</li>
+<li>当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中</li>
+<li>当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理</li>
+<li>，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）</li>
+</ul>
+<p>定时触发器线程：</p>
+<ul>
+<li>传说中的setInterval与setTimeout所在线程</li>
+<li>浏览器定时计数器并不是由JavaScript引擎计数的,</li>
+<li>因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）</li>
+<li>规定要求setTimeout中低于4ms的时间间隔算为4ms</li>
+</ul>
+<p>异步http请求线程：</p>
+<ul>
+<li>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求</li>
+<li>将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。</li>
+</ul>
+<h4 id="浏览器内核中线程之间的关系"><a href="#浏览器内核中线程之间的关系" class="headerlink" title="浏览器内核中线程之间的关系"></a>浏览器内核中线程之间的关系</h4><h5 id="GUI渲染线程与JS引擎线程互斥"><a href="#GUI渲染线程与JS引擎线程互斥" class="headerlink" title="GUI渲染线程与JS引擎线程互斥"></a>GUI渲染线程与JS引擎线程互斥</h5><p>由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JS线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致了。</p>
+<p>因此为了防止渲染出现不可预期的结果，浏览器设置GUI渲染线程与JS引擎为互斥的关系，当JS引擎执行时GUI线程会被挂起，GUI更新则会被保存在一个队列中等到JS引擎线程空闲时立即被执行。</p>
+<p><strong>JS阻塞页面加载</strong>JS如果执行时间过长就会阻塞页面。<br>假设JS引擎正在进行巨量的计算，此时就算GUI有更新，也会被保存到队列中，等待JS引擎空闲后执行。  </p>
+<p>HTML5中支持了<code>Web Worker</code>。</p>
+<ul>
+<li>创建Worker时，JS引擎向浏览器申请开一个子线程（子线程是浏览器开的，完全受主线程控制，而且不能操作DOM）</li>
+<li>JS引擎线程与worker线程间通过特定的方式通信</li>
+</ul>
+<p><img src="/images/hCetcJu9oSaemXgYG328.png" alt="upload successful">  </p>
+<h5 id="浏览器渲染流程开始"><a href="#浏览器渲染流程开始" class="headerlink" title="浏览器渲染流程开始"></a>浏览器渲染流程开始</h5><ul>
+<li>解析html建立dom树</li>
+<li>解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）</li>
+<li>布局render树（Layout/reflow），负责各元素尺寸、位置的计算</li>
+<li>绘制render树（paint），绘制页面像素信息</li>
+<li>浏览器会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。</li>
+</ul>
+<h5 id="load事件与DOMContentLoaded事件的先后"><a href="#load事件与DOMContentLoaded事件的先后" class="headerlink" title="load事件与DOMContentLoaded事件的先后"></a>load事件与DOMContentLoaded事件的先后</h5><ul>
+<li><p>当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片。</p>
+</li>
+<li><p>当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片都已经加载完成了。</p>
+</li>
+</ul>
+<h5 id="css加载是否会阻塞dom树渲染？"><a href="#css加载是否会阻塞dom树渲染？" class="headerlink" title="css加载是否会阻塞dom树渲染？"></a>css加载是否会阻塞dom树渲染？</h5><p>css是由单独的下载线程异步下载的。</p>
+<ul>
+<li>css加载不会阻塞DOM树解析（异步加载时DOM照常构建）</li>
+<li>但会阻塞render树渲染（渲染时需等css加载完毕，因为render树需要css信息）</li>
+</ul>
+<h5 id="普通图层和复合图层"><a href="#普通图层和复合图层" class="headerlink" title="普通图层和复合图层"></a>普通图层和复合图层</h5><p>渲染步骤中就提到了<code>composite</code>概念。浏览器渲染的图层一般包含两大类：<code>普通图层</code>以及<code>复合图层</code></p>
+<p>首先，普通文档流内可以理解为一个<code>复合图层</code>（这里称为默认复合层，里面不管添加多少元素，其实都是在同一个复合图层中）  </p>
+<p>其次，absolute布局（fixed也一样），虽然可以脱离普通文档流，但它仍然属于默认复合层。</p>
+<p>然后，可以通过<code>硬件加速</code>的方式，声明一个<code>新的复合图层</code>，它会单独分配资源<br>（当然也会脱离普通文档流，这样一来，不管这个复合图层中怎么变化，也不会影响默认复合层里的回流重绘）</p>
+<p><strong>GPU中，各个复合图层是单独绘制的，所以互不影响</strong></p>
+<h5 id="如何变成复合图层（硬件加速）"><a href="#如何变成复合图层（硬件加速）" class="headerlink" title="如何变成复合图层（硬件加速）"></a>如何变成复合图层（硬件加速）</h5><ul>
+<li>最常用的方式：<code>translate3d</code>、<code>translateZ</code>  </li>
+<li><code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）  </li>
+<li><code>will-chang</code>属性（这个比较偏僻），一般配合<code>opacity</code>与<code>translate</code>使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），</li>
+</ul>
+<h5 id="硬件加速时请使用index"><a href="#硬件加速时请使用index" class="headerlink" title="硬件加速时请使用index"></a>硬件加速时请使用index</h5><p>使用硬件加速时，尽可能的使用index，防止浏览器默认给后续的元素创建复合层渲染</p>
+<p>原理:<br><strong>webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比较低，<br>那么在这个元素的后面其它元素（层级比这个元素高的，或者相同的，并且releative或absolute属性相同的），<br>会默认变为复合层渲染，如果处理不当会极大的影响性能</strong></p>
+<p>如果a是一个复合图层，而且b在a上面，那么b也会被隐式转为一个复合图层，这点需要特别注意</p>
+<h3 id="从Event-Loop谈JS的运行机制"><a href="#从Event-Loop谈JS的运行机制" class="headerlink" title="从Event Loop谈JS的运行机制"></a>从Event Loop谈JS的运行机制</h3><p>待写—-</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/HTML常见问题/" rel="next" title="HTML常见问题">
+                <i class="fa fa-chevron-left"></i> HTML常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/CSS相关问题/" rel="prev" title="CSS相关问题">
+                CSS相关问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lethe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍一下你对浏览器内核的理解？"><span class="nav-number">1.</span> <span class="nav-text">介绍一下你对浏览器内核的理解？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器内核中线程之间的关系"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器内核中线程之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GUI渲染线程与JS引擎线程互斥"><span class="nav-number">1.1.1.</span> <span class="nav-text">GUI渲染线程与JS引擎线程互斥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器渲染流程开始"><span class="nav-number">1.1.2.</span> <span class="nav-text">浏览器渲染流程开始</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#load事件与DOMContentLoaded事件的先后"><span class="nav-number">1.1.3.</span> <span class="nav-text">load事件与DOMContentLoaded事件的先后</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css加载是否会阻塞dom树渲染？"><span class="nav-number">1.1.4.</span> <span class="nav-text">css加载是否会阻塞dom树渲染？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#普通图层和复合图层"><span class="nav-number">1.1.5.</span> <span class="nav-text">普通图层和复合图层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何变成复合图层（硬件加速）"><span class="nav-number">1.1.6.</span> <span class="nav-text">如何变成复合图层（硬件加速）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#硬件加速时请使用index"><span class="nav-number">1.1.7.</span> <span class="nav-text">硬件加速时请使用index</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从Event-Loop谈JS的运行机制"><span class="nav-number">2.</span> <span class="nav-text">从Event Loop谈JS的运行机制</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lethe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器 标签选择器 id选择器 class选择器 伪类选择器(first-child,nth-child) 子代选择器 兄弟选择器 后代选择器 否定选择器 :not(.link) 属性选择器 [attribute] 伪元素选择器 ::before {content:’’} 伪元素css3里面规定了用两个::  CSS3属性选择器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS相关问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/CSS相关问题/index.html">
+<meta property="og:site_name" content="Lethe">
+<meta property="og:description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器 标签选择器 id选择器 class选择器 伪类选择器(first-child,nth-child) 子代选择器 兄弟选择器 后代选择器 否定选择器 :not(.link) 属性选择器 [attribute] 伪元素选择器 ::before {content:’’} 伪元素css3里面规定了用两个::  CSS3属性选择器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/9lg1p2cYg3Om5TQH4dZB.png">
+<meta property="og:updated_time" content="2019-03-12T05:07:30.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS相关问题">
+<meta name="twitter:description" content="CSSCascading Style Sheet 层叠样式表 CSS选择器 标签选择器 id选择器 class选择器 伪类选择器(first-child,nth-child) 子代选择器 兄弟选择器 后代选择器 否定选择器 :not(.link) 属性选择器 [attribute] 伪元素选择器 ::before {content:’’} 伪元素css3里面规定了用两个::  CSS3属性选择器">
+<meta name="twitter:image" content="http://yoursite.com/images/9lg1p2cYg3Om5TQH4dZB.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/CSS相关问题/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSS相关问题 | Lethe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lethe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/CSS相关问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lethe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lethe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS相关问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-11 19:04:35" itemprop="dateCreated datePublished" datetime="2019-03-11T19:04:35+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-12 13:07:30" itemprop="dateModified" datetime="2019-03-12T13:07:30+08:00">2019-03-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><p>Cascading Style Sheet 层叠样式表</p>
+<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><ul>
+<li>标签选择器</li>
+<li>id选择器</li>
+<li>class选择器</li>
+<li>伪类选择器(first-child,nth-child)</li>
+<li>子代选择器</li>
+<li>兄弟选择器</li>
+<li>后代选择器</li>
+<li>否定选择器 :not(.link)</li>
+<li>属性选择器 [attribute]</li>
+<li>伪元素选择器 ::before {content:’’} 伪元素css3里面规定了用两个::</li>
+</ul>
+<h3 id="CSS3属性选择器"><a href="#CSS3属性选择器" class="headerlink" title="CSS3属性选择器"></a>CSS3属性选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[attribute]</td>
+<td>用于选取带有指定属性的元素。</td>
+</tr>
+<tr>
+<td>[attribute=value]</td>
+<td>用于选取带有指定属性和值的元素。</td>
+</tr>
+<tr>
+<td>[attribute~=value]</td>
+<td>用于选取属性值中包含指定词汇的元素。</td>
+</tr>
+<tr>
+<td>[attribute\</td>
+<td>=value]</td>
+<td>用于选取带有以指定值开头的属性值的元素，该值必须是整个单词。</td>
+</tr>
+<tr>
+<td>[attribute^=value]</td>
+<td>匹配属性值以指定值开头的每个元素。</td>
+</tr>
+<tr>
+<td>[attribute$=value]</td>
+<td>匹配属性值以指定值结尾的每个元素。</td>
+</tr>
+<tr>
+<td>[attribute*=value]</td>
+<td>匹配属性值中包含指定值的每个元素。</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes#%E6%A0%87%E5%87%86%E4%BC%AA%E7%B1%BB%E7%B4%A2%E5%BC%95" target="_blank" rel="noopener">伪类 | MDN</a><br>常用：</p>
+<ul>
+<li>:hover</li>
+<li>:focus</li>
+<li>:after 在元素之前添加内容,也可以用来做清除浮动。</li>
+<li>:before 在元素之后添加内容</li>
+<li>:enabled 选择器匹配每个已启用的元素（大多用在表单元素上）。</li>
+<li>:disabled 控制表单控件的禁用状态。</li>
+<li>:checked 单选框或复选框被选中</li>
+<li>::selection  用户选中的区域</li>
+<li>:empty   一般用来隐藏内部什么都没有的元素</li>
+<li>:not(selecter)</li>
+<li></li>
+<li>p:first-of-type </li>
+<li>p:last-of-type </li>
+<li>p:only-of-type </li>
+<li>p:nth-of-type(n)</li>
+<li>p:nth-last-of-type(n)</li>
+<li></li>
+<li>:nth-child(n)</li>
+<li>:nth-last-child(n)</li>
+<li>p:only-child </li>
+</ul>
+<h3 id="伪类和伪元素区别"><a href="#伪类和伪元素区别" class="headerlink" title="伪类和伪元素区别"></a>伪类和伪元素区别</h3><ul>
+<li>伪类值一种状态 比如:hover</li>
+<li>伪元素是一个真实存在的元素，他可以有样式有内容</li>
+</ul>
+<h3 id="iconfont原理"><a href="#iconfont原理" class="headerlink" title="iconfont原理"></a>iconfont原理</h3><ul>
+<li>利用编码让图标编为一个字符</li>
+<li>引入字体</li>
+<li>利用before伪元素向页面中插入一个文字</li>
+</ul>
+<h3 id="css优先级计算"><a href="#css优先级计算" class="headerlink" title="css优先级计算"></a>css优先级计算</h3><ul>
+<li><code>!important</code> 优先级最高，会被优先级高的<code>!important</code> 覆盖</li>
+<li>行内样式会覆盖外部样式表的样式（除了<code>!important</code> ）</li>
+<li></li>
+</ul>
+<p>!important &gt; 行内样式 &gt; ID选择器 &gt; (类选择器 | 属性选择器 | 伪类选择器 )&gt; 元素选择器</p>
+<h4 id="权重等级"><a href="#权重等级" class="headerlink" title="权重等级"></a>权重等级</h4><p>每个选择器在权重级别中都有自己泾渭分明的位置。根据选择器种类的不同可以分为四类，也决定了四种不同等级的权重值.</p>
+<h5 id="怎么确定权重"><a href="#怎么确定权重" class="headerlink" title="怎么确定权重"></a>怎么确定权重</h5><p>权重记忆口诀。从0开始，一个行内样式+1000，一个id+100，一个属性选择器/class或者伪类+10，一个元素名，或者伪元素+1.比如</p>
+<p><img src="/images/9lg1p2cYg3Om5TQH4dZB.png" alt="upload successful"> </p>
+<ol>
+<li>*{}                         ====》0</li>
+<li>li{}                        ====》1(一个元素)</li>
+<li>li:first-line{}             ====》2(一个元素，一个伪元素)</li>
+<li>ul li {}                    ====》2（两个元素）</li>
+<li>ul ol+li{}                  ====》3（三个元素）</li>
+<li>h1+ *[rel=up] {}            ====》11（一个属性选择器，一个元素）</li>
+<li>ul ol li.red{}              ====》13（一个类，三个元素）</li>
+<li>li.red.level{}              ====》21（两个类，一个元素）</li>
+<li>style=””                    ====》1000(一个行内样式)</li>
+<li>p {}                        ====》1（一个元素）</li>
+<li>div p {}                    ====》2（两个元素）</li>
+<li>.sith {}                    ====》10（一个类）</li>
+<li>div p.sith{}                ====》12（一个类，两个元素）</li>
+<li>#sith{}                     ====》100（一个ID选择器）</li>
+<li>body #darkside .sith p {}   ====》112(1+100+10+1,一个Id选择器，一个类，两个元素)</li>
+</ol>
+<p>继承过来的属性优先级最低。</p>
+<h3 id="浏览器解析CSS"><a href="#浏览器解析CSS" class="headerlink" title="浏览器解析CSS"></a>浏览器解析CSS</h3><p><code>.wrapper div &gt; p</code>  CSS中，浏览器查找元素是通过选择权从后往前找的， 这样做的目的是加快CSS解析速度，从后往前，排除法</p>
+<p><a href="https://blog.csdn.net/qq_21397815/article/details/72874932" target="_blank" rel="noopener">浏览器解析css选择器的规则</a></p>
+<h3 id="盒模式"><a href="#盒模式" class="headerlink" title="盒模式"></a>盒模式</h3><p>盒模型有两种，IE 怪异盒子模式 和 W3C标准盒子模型</p>
+<p>盒模型： <code>content</code> <code>padding</code> <code>border</code> <code>margin</code></p>
+<p>标准模型的宽高是指<code>content</code>区的宽高<br>怪异盒子模式 是指 content+padding+border</p>
+<h3 id="CSS如何设置这两种盒模型？"><a href="#CSS如何设置这两种盒模型？" class="headerlink" title="CSS如何设置这两种盒模型？"></a>CSS如何设置这两种盒模型？</h3><p>标准盒模型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: content-box;</span><br></pre></td></tr></table></figure></p>
+<p>怪异盒模型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: border-box;</span><br></pre></td></tr></table></figure></p>
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p><a href="https://www.cnblogs.com/libin-1/p/7098468.html" target="_blank" rel="noopener">什么是BFC</a></p>
+<p>w3c对BFC的定义：</p>
+<blockquote>
+<p>浮动元素，绝对定位，非块级盒子的块级容器(eg：inline-blocks, table-cells,table-captions),以及overflow的值不是‘visiable’的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）</p>
+</blockquote>
+<p>HTML元素要创建BFC，则满足下列的任意一个或多个条件即可：<br>1、float的值不是none。<br>2、position的值不是static或者relative。<br>3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex<br>4、overflow的值不是visible  </p>
+<h4 id="BFC可以做什么？"><a href="#BFC可以做什么？" class="headerlink" title="BFC可以做什么？"></a>BFC可以做什么？</h4><ol>
+<li>避免外边距折叠（外边距折叠产生的一个条件是：两个元素同处与同一个BFC）</li>
+<li>清除内部浮动<br> 原理：触发父容器的BFC，使得子div都处于父级div的BFC范围<br> 浮动元素会脱离文档流（绝对定位也会），如果一个没有高度或者height是auto的容器的子元素是浮动元素，则该容器的高度是不会被撑开的。用BFC容器可以包住浮动子元素，并且其高度会扩展至包住其子元素，在这个新的BFC中浮动元素又回归到页面的常规流之中了。<br> 可以通过伪元素，</li>
+<li>避免文字环绕</li>
+<li>多列布局，最后一个元素可以自适应大小<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.column</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">31.33%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">1%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*  Establishing a new block formatting </span></span><br><span class="line"><span class="comment">    context in the last column */</span></span><br><span class="line"><span class="selector-class">.column</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: none;</span><br><span class="line"><span class="attribute">overflow</span>: hidden; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>BFC布局规则：</p>
+<ol>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>属于同一个BFC的两个相邻的Box的margin会发生重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此, 文字环绕效果，设置float</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>计算BFC的高度，浮动元素也参与计算</li>
+</ol>
+<h3 id="非布局样式"><a href="#非布局样式" class="headerlink" title="非布局样式"></a>非布局样式</h3><ul>
+<li>字体、字重、颜色、大小、行高</li>
+<li>背景、边框</li>
+<li>滚动、换行</li>
+<li>粗体、斜体、下划线</li>
+<li>其他</li>
+</ul>
+<h3 id="行高的构成"><a href="#行高的构成" class="headerlink" title="行高的构成"></a>行高的构成</h3><ul>
+<li>行高是由 line-box 组成的</li>
+<li>line-box 是由一行里的 inline-box 组成的</li>
+<li>inline-box中最高的那个，或字体最大的拿个决定行高</li>
+</ul>
+<h3 id="谈谈浮动和清除浮动"><a href="#谈谈浮动和清除浮动" class="headerlink" title="谈谈浮动和清除浮动"></a>谈谈浮动和清除浮动</h3><p>浮动的框可以向左或向右移动，<strong>直到他的外边缘碰到包含框或另一个浮动框的边框为止</strong>。 <strong>浮动框脱离文档流</strong>，所以文档的普通流的块框表现得就像浮动框不存在一样。浮动的块框会漂浮在文档普通流的块框上。</p>
+<p>清除方法：</p>
+<ol>
+<li>父级 div 定义伪类：after 和 zoom (推荐使用，建议定义公共类，以减少 CSS 代码)</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfloat</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfloat</span>&#123;<span class="attribute">zoom</span>:<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在结尾处添加空 div 标签 clear:both<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>Left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>Right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"clearfloat"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">    <span class="selector-class">.left</span> &#123;<span class="attribute">float</span>:left&#125;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.clearfloat</span>&#123;<span class="attribute">clear</span>:both&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>父级 div 定义 overflow:auto。 同时需要父级指定宽度</p>
+<p>参考链接<a href="https://www.cnblogs.com/nxl0908/p/7245460.html" target="_blank" rel="noopener">几种常用的清除浮动方法</a></p>
+<h3 id="伪元素和伪类的区别和作用？"><a href="#伪元素和伪类的区别和作用？" class="headerlink" title="伪元素和伪类的区别和作用？"></a>伪元素和伪类的区别和作用？</h3><p>伪元素:在内容元素的前后插入额外的元素或样式，但是这些元素实际上并不在文档中生成。它们只在外部显示可见，但不会在文档的源代码中找到它们，因此，称为“伪”元素。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::before</span> &#123;<span class="attribute">content</span>:<span class="string">"第一章："</span>;&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::after</span> &#123;<span class="attribute">content</span>:<span class="string">"Hot!"</span>;&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-line</span> &#123;<span class="attribute">background</span>:red;&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-letter</span> &#123;<span class="attribute">font-size</span>:<span class="number">30px</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>伪类: 将特殊的效果添加到特定选择器上。它是已有元素上添加类别的，不会产生新的元素。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>: <span class="number">#FF00FF</span>&#125;</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-child</span> &#123;<span class="attribute">color</span>: red&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="before-和-after-中双冒号和单冒号有什么区别？"><a href="#before-和-after-中双冒号和单冒号有什么区别？" class="headerlink" title="::before 和 :after 中双冒号和单冒号有什么区别？"></a>::before 和 :after 中双冒号和单冒号有什么区别？</h3><ul>
+<li>在 CSS 中伪类一直用 : 表示，如 :hover, :active 等</li>
+<li>伪元素在 CSS1 中已存在，当时语法是用 : 表示，如 :before 和 :after</li>
+<li>后来在 CSS3 中修订，伪元素用 :: 表示，如 ::before 和 ::after，以此区分伪元素和伪类</li>
+<li>由于低版本 IE 对双冒号不兼容，开发者为了兼容性各浏览器，继续使使用 :after 这种老语法表示伪元素</li>
+<li>综上所述：::before 是 CSS3 中写伪元素的新语法； :after 是 CSS1 中存在的、兼容 IE 的老语法</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/浏览器相关问题/" rel="next" title="浏览器相关问题">
+                <i class="fa fa-chevron-left"></i> 浏览器相关问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Lethe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">1.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS选择器"><span class="nav-number">1.0.1.</span> <span class="nav-text">CSS选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3属性选择器"><span class="nav-number">1.0.2.</span> <span class="nav-text">CSS3属性选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类和伪元素区别"><span class="nav-number">1.0.3.</span> <span class="nav-text">伪类和伪元素区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iconfont原理"><span class="nav-number">1.0.4.</span> <span class="nav-text">iconfont原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css优先级计算"><span class="nav-number">1.0.5.</span> <span class="nav-text">css优先级计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#权重等级"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">权重等级</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#怎么确定权重"><span class="nav-number">1.0.5.1.1.</span> <span class="nav-text">怎么确定权重</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器解析CSS"><span class="nav-number">1.0.6.</span> <span class="nav-text">浏览器解析CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒模式"><span class="nav-number">1.0.7.</span> <span class="nav-text">盒模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS如何设置这两种盒模型？"><span class="nav-number">1.0.8.</span> <span class="nav-text">CSS如何设置这两种盒模型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC"><span class="nav-number">1.0.9.</span> <span class="nav-text">BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC可以做什么？"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">BFC可以做什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非布局样式"><span class="nav-number">1.0.10.</span> <span class="nav-text">非布局样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行高的构成"><span class="nav-number">1.0.11.</span> <span class="nav-text">行高的构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈浮动和清除浮动"><span class="nav-number">1.0.12.</span> <span class="nav-text">谈谈浮动和清除浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪元素和伪类的区别和作用？"><span class="nav-number">1.0.13.</span> <span class="nav-text">伪元素和伪类的区别和作用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#before-和-after-中双冒号和单冒号有什么区别？"><span class="nav-number">1.0.14.</span> <span class="nav-text">::before 和 :after 中双冒号和单冒号有什么区别？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lethe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

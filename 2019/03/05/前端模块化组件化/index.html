@@ -104,28 +104,24 @@
 
 
 
-  <meta name="description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
+  <meta name="description" content="参考 https://segmentfault.com/a/1190000015437724  前端工程化：  技术选型 构建优化 js css模块化  模块化的意义模块化主要体现的是一种分而治之的思想，分而治之就是将一个大问题分解成多个独立的的小问题，最后组合就是大问题的答案。   模块化则是前端最流行的分治手段，模块化可以对功能进行划分，有利于代码的复用和维护。有利于提高团队开发效率 为什么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue3.0使用Proxy数据绑定">
-<meta property="og:url" content="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/index.html">
+<meta property="og:title" content="前端模块化组件化">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/前端模块化组件化/index.html">
 <meta property="og:site_name" content="Lethe">
-<meta property="og:description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
+<meta property="og:description" content="参考 https://segmentfault.com/a/1190000015437724  前端工程化：  技术选型 构建优化 js css模块化  模块化的意义模块化主要体现的是一种分而治之的思想，分而治之就是将一个大问题分解成多个独立的的小问题，最后组合就是大问题的答案。   模块化则是前端最流行的分治手段，模块化可以对功能进行划分，有利于代码的复用和维护。有利于提高团队开发效率 为什么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/M13R3dqssOEDHa5MGgya.png">
-<meta property="og:image" content="http://yoursite.com/images/4BiPYa1MSwTUQBcgk0jY.png">
-<meta property="og:image" content="http://yoursite.com/images/G06rMi8KPINNtOEi1me5.png">
-<meta property="og:updated_time" content="2019-03-06T09:41:59.718Z">
+<meta property="og:updated_time" content="2019-03-15T02:28:12.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue3.0使用Proxy数据绑定">
-<meta name="twitter:description" content="vue双向绑定原理vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过Object.defineProperty 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定">
-<meta name="twitter:image" content="http://yoursite.com/images/M13R3dqssOEDHa5MGgya.png">
+<meta name="twitter:title" content="前端模块化组件化">
+<meta name="twitter:description" content="参考 https://segmentfault.com/a/1190000015437724  前端工程化：  技术选型 构建优化 js css模块化  模块化的意义模块化主要体现的是一种分而治之的思想，分而治之就是将一个大问题分解成多个独立的的小问题，最后组合就是大问题的答案。   模块化则是前端最流行的分治手段，模块化可以对功能进行划分，有利于代码的复用和维护。有利于提高团队开发效率 为什么">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/前端模块化组件化/">
 
 
 
@@ -135,7 +131,7 @@
   };
 </script>
 
-  <title>Vue3.0使用Proxy数据绑定 | Lethe</title>
+  <title>前端模块化组件化 | Lethe</title>
   
 
 
@@ -317,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/Vue3-0-数据绑定Proxy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/前端模块化组件化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lethe">
@@ -334,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vue3.0使用Proxy数据绑定
+          <h1 class="post-title" itemprop="name headline">前端模块化组件化
 
               
             
@@ -360,7 +356,7 @@
                 
               
 
-              <time title="Created: 2019-03-01 18:52:39" itemprop="dateCreated datePublished" datetime="2019-03-01T18:52:39+08:00">2019-03-01</time>
+              <time title="Created: 2019-03-05 20:51:37" itemprop="dateCreated datePublished" datetime="2019-03-05T20:51:37+08:00">2019-03-05</time>
             
 
             
@@ -377,7 +373,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-06 17:41:59" itemprop="dateModified" datetime="2019-03-06T17:41:59+08:00">2019-03-06</time>
+                <time title="Modified: 2019-03-15 10:28:12" itemprop="dateModified" datetime="2019-03-15T10:28:12+08:00">2019-03-15</time>
               
             
           </span>
@@ -410,34 +406,44 @@
       
 
       
-        <h2 id="vue双向绑定原理"><a href="#vue双向绑定原理" class="headerlink" title="vue双向绑定原理"></a>vue双向绑定原理</h2><p>vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的。通过<code>Object.defineProperty</code> 来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发响应的监听回调。<br>1、需要一个Observer，对数据对象的所有属性进行监听，如果有变动可将最新值通知给订阅者<br>2、需要指令解析器，对每个节点指令进行扫面解析，根据模板指令替换数据，以及绑定对应的更新函数<br>3、需要现象watcher 作为 Observer和指令解析器的桥梁，能够订阅并收到每个属性变动</p>
-<p>具体实现代码（<a href="https://github.com/canfoo/self-vue/tree/master/v3）" target="_blank" rel="noopener">https://github.com/canfoo/self-vue/tree/master/v3）</a></p>
-<p><img src="/images/M13R3dqssOEDHa5MGgya.png" alt="upload successful"></p>
-<p><img src="/images/4BiPYa1MSwTUQBcgk0jY.png" alt="upload successful">  </p>
+        <blockquote>
+<p>参考 <a href="https://segmentfault.com/a/1190000015437724" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015437724</a></p>
+</blockquote>
+<p>前端工程化：</p>
+<ol>
+<li>技术选型</li>
+<li>构建优化</li>
+<li>js css模块化</li>
+</ol>
+<h2 id="模块化的意义"><a href="#模块化的意义" class="headerlink" title="模块化的意义"></a>模块化的意义</h2><p>模块化主要体现的是一种分而治之的思想，分而治之就是将一个大问题分解成多个独立的的小问题，最后组合就是大问题的答案。  </p>
+<p>模块化则是前端最流行的分治手段，模块化可以对功能进行划分，有利于代码的复用和维护。有利于提高团队开发效率</p>
+<h2 id="为什么需要模块化"><a href="#为什么需要模块化" class="headerlink" title="为什么需要模块化"></a>为什么需要模块化</h2><ul>
+<li>web sites慢慢变成了web app</li>
+<li>随着项目的扩大，代码量越来越大，代码越来越复杂</li>
+<li>对代码、文件的高度解耦的要求</li>
+<li>优化上，希望减少http请求</li>
+</ul>
+<p>随着前端应用越来越复杂，模块化在前端是很有必要的。</p>
+<h2 id="前端模块化历史和方案"><a href="#前端模块化历史和方案" class="headerlink" title="前端模块化历史和方案"></a>前端模块化历史和方案</h2><p>早起的模块化的方案很简单，就是通过命名空间，匿名闭包的方式，或module模式模拟类提供私有和共有方法来实现模块化，但是这些模块都不是以文件为单位，而是以对象为单位。</p>
+<h4 id="同步加载CommonJS"><a href="#同步加载CommonJS" class="headerlink" title="同步加载CommonJS"></a>同步加载CommonJS</h4><p>比如node.js，使用的便是CommomJS规范。通过require，module.exports，exports来进行导入和导出，这里exports是module.exports的一个引用。  </p>
+<p>CommonJS的规范： 根据CommonJS规范，一个单独的文件就是一个模块。加载模块使用require方法，该方法读取一个文件并执行，最后返回文件内部的exports对象。</p>
+<h4 id="异步加载-AMD-Asynchronous-Module-Definition，异步模块定义"><a href="#异步加载-AMD-Asynchronous-Module-Definition，异步模块定义" class="headerlink" title="异步加载 AMD (Asynchronous Module Definition，异步模块定义)"></a>异步加载 AMD (Asynchronous Module Definition，异步模块定义)</h4><p>采用异步方式加载模块，通过define来定义一个模块，通过require来引入模块，模块的加载不影响后面语句的执行，所有依赖于这些模块的语句都写在一个回调函数中，加载完毕后，这个回调函数才运行</p>
+<p>CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。AMD规范则是非同步加载模块，允许指定回调函数。由于Node.js主要用于服务器编程，模块文件一般都已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以CommonJS规范比较适用。但是，如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用AMD规范</p>
+<h4 id="CMD-Common-Module-Definition，通用模块定义"><a href="#CMD-Common-Module-Definition，通用模块定义" class="headerlink" title="CMD (Common Module Definition，通用模块定义)"></a>CMD (Common Module Definition，通用模块定义)</h4><ul>
+<li>AMD提倡依赖前置，在定义模块的时候就要声明其依赖的模块</li>
+<li>CMD提倡就近依赖（按需加载），在用到某个模块的时候再去require进来。</li>
+</ul>
+<h4 id="规范的实现库"><a href="#规范的实现库" class="headerlink" title="规范的实现库"></a>规范的实现库</h4><p>AMD规范的require.js与CMD规范的sea.js</p>
 <blockquote>
-<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+<p>require.js主要解决的问题：<br>管理文件之间的依赖性<br>避免浏览器因为加载依赖而停止页面渲染，失去响应。  </p>
 </blockquote>
-<p>使用<code>Object.defineProperty</code>存在一些缺点：<br>1、在vue中，无法监控到数组下标的变换，不能实时响应,<a href="https://segmentfault.com/a/1190000015783546" target="_blank" rel="noopener">因为性能问题</a>。<br>2.<code>Object.defineProperty</code>只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历.Vue里，是通过递归以及遍历data对象来实现对数据的监控的，如果属性值也是对象那么需要深度遍历,显然如果能劫持一个完整的对象，不管是对操作性还是性能都会有一个很大的提升。</p>
-<h2 id="Vue3-0-使用Proxy进行双向数据绑定"><a href="#Vue3-0-使用Proxy进行双向数据绑定" class="headerlink" title="Vue3.0 使用Proxy进行双向数据绑定"></a>Vue3.0 使用Proxy进行双向数据绑定</h2><blockquote>
-<p>Proxy 是es6的新特性，意为代理，可以在目标对象前架设一层拦截，外界对该对象的访问，都必须通过这层拦截，这提供了一种机制，可以对外界的访问进行过滤和改写。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><img src="/images/G06rMi8KPINNtOEi1me5.png" alt="upload successful"> </p>
-<blockquote>
-<p>Proxy提供了13中数据劫持的方法，handler对象 常用的方法： set,get,has,construct<br>上面使用到<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener"><code>Reflect</code></a>对象是es6新增的对象，它提供拦截 JavaScript 操作的方法。这些方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>（1） 将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</p>
-</blockquote>
-<blockquote>
-<p>（2） 修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。  </p>
-</blockquote>
-<blockquote>
-<p>（3） 让Object操作都变成函数行为。</p>
-</blockquote>
-<blockquote>
-<p>（4）Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。  </p>
-</blockquote>
-<blockquote>
-<p>参考  <a href="https://segmentfault.com/a/1190000017397797#articleHeader1" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017397797#articleHeader1</a></p>
-</blockquote>
+<h3 id="es6-原生的模块化方案"><a href="#es6-原生的模块化方案" class="headerlink" title="es6 原生的模块化方案"></a>es6 原生的模块化方案</h3><p><strong><em>import export/export default</em></strong></p>
+<p>es6的设计思想是尽量的使得在编译的时候就能确定依赖关系</p>
+<h3 id="模块化打包工具webpack"><a href="#模块化打包工具webpack" class="headerlink" title="模块化打包工具webpack"></a>模块化打包工具webpack</h3><p>组件化、模块化开发的模式产生有个问题必然会产生，就是如何把模块、组件加载组合到一起。</p>
+<p>本质上webpack是一个现代JavaScript应用程序的静态模块打包器。它递归的构建一个依赖关系图，其中包含应用程序的每个模块，然后将这些模块打包成一个或多个bundle.js。<br>webpack 支持 CommonJS，AMD，ES6等规范，所以我们在代码中可以使用多种模块加载规范，而且通过loader，它不仅可以处理JavaScript，还可以处理像css，图片等等的静态资源。</p>
+<p>webpack的优势<br>1、支持CommonJS 和 AMD 模块。<br>2、支持模块加载器和插件机制，可对模块灵活定制。babel-loader支持ES6<br>3、可以通过配置，打包成多个文件。有效的利用浏览器的缓存。<br>4、将样式文件和图片等静态资源视为模块进行打包。配合loader加载器，对资源进行处理。</p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>组件化主要要针对的是UI组件的分治，可以提高代码复用性，有利于扩展，团队协作  </p>
+<p>如何划分：<br>页面上每个独立可视的可交互区域视为组件<br>每个组件构建的时候对于一个工程目录，组件所需的资源在这个目录下维护，<br>组件不依赖其他组件 ，高内聚低耦合<br>功能封装，组件不涉及具体的功能逻辑</p>
 
       
     </div>
@@ -468,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/28/理解js作用域/" rel="next" title="var let const 作用域理解">
-                <i class="fa fa-chevron-left"></i> var let const 作用域理解
+              <a href="/2019/03/01/Vue生命周期/" rel="next" title="Vue生命周期">
+                <i class="fa fa-chevron-left"></i> Vue生命周期
               </a>
             
           </div>
@@ -478,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/01/Vue生命周期/" rel="prev" title="Vue生命周期">
-                Vue生命周期 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/11/HTML常见问题/" rel="prev" title="HTML常见问题">
+                HTML常见问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -604,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue双向绑定原理"><span class="nav-number">1.</span> <span class="nav-text">vue双向绑定原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue3-0-使用Proxy进行双向数据绑定"><span class="nav-number">2.</span> <span class="nav-text">Vue3.0 使用Proxy进行双向数据绑定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化的意义"><span class="nav-number">1.</span> <span class="nav-text">模块化的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要模块化"><span class="nav-number">2.</span> <span class="nav-text">为什么需要模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端模块化历史和方案"><span class="nav-number">3.</span> <span class="nav-text">前端模块化历史和方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步加载CommonJS"><span class="nav-number">3.0.1.</span> <span class="nav-text">同步加载CommonJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步加载-AMD-Asynchronous-Module-Definition，异步模块定义"><span class="nav-number">3.0.2.</span> <span class="nav-text">异步加载 AMD (Asynchronous Module Definition，异步模块定义)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMD-Common-Module-Definition，通用模块定义"><span class="nav-number">3.0.3.</span> <span class="nav-text">CMD (Common Module Definition，通用模块定义)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规范的实现库"><span class="nav-number">3.0.4.</span> <span class="nav-text">规范的实现库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6-原生的模块化方案"><span class="nav-number">3.1.</span> <span class="nav-text">es6 原生的模块化方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化打包工具webpack"><span class="nav-number">3.2.</span> <span class="nav-text">模块化打包工具webpack</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#组件化"><span class="nav-number">4.</span> <span class="nav-text">组件化</span></a></li></div>
             
 
           </div>
